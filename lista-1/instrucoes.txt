@@ -1,0 +1,56 @@
+Todos os códigos foram compilados e testados utilizando o GCC GNU C/C++
+Compiler, rodando em um kernel Linux 5.19 do Ubuntu 22.04 LTS:
+
+    ~/usp/data-struct/lista-1 main*
+    base ❯ uname -a
+    Linux breno-lenovo 5.19.0-41-generic #42~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue Apr 18 17:40:00 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+
+As informações e instruções dos exercícios estão expostas abaixo.
+
+# ex1
+O exercício 1 concatena duas strings dadas pelo usuário
+utilizando um caractere de concatenação dado pelo usuário.
+
+Para rodar, faça:
+gcc ex1.c -o ex1 && ./ex1
+
+## Exemplo de execução no terminal:
+    ~/usp/data-struct/lista-1 main*
+    base ❯ ./ex1
+    Digite a string 1: olatodomundo
+    Digite a string 2: tudobem?
+    Digite o caractere de concatenação: -
+    Resultado: olatodomundo-tudobem?
+
+# ex2
+O exercício 2 calcula (A*B)^n onde A(m x n) e B(p x q) são matrizes
+tais que n=p e m=q. As matrizes são definidas no código e um erro será
+mostrado caso n != p ou m != q.
+
+Para rodar, faça:
+gcc ex2.c -o ex2 && ./ex2
+
+No código, as matrizes estão definidas como:
+    float matriz1[][3] = {{1.0,2.0,3.0}, {4.0, 5.0, 6.0}};
+    float matriz2[][2] = {{2.0,3.0}, {5.0, 6.0}, {8.0, 9.0}};
+E n está definido como n=3.
+
+Elas podem ser redefinidas como quiser, satisfazendo a condição n=p, m=q.
+A variável n também pode ser redefinida no código.
+
+## Exemplo de execução no terminal:
+    ~/usp/data-struct/lista-1 main*
+    base ❯ ./ex2
+    Resultado: 
+    618192.00  729540.00 
+    1406970.00  1660392.00 
+
+# ex3
+O exercício 3 lê as notas de N alunos de uma sala e calcula a média
+das notas lidas, mostrando o resultado na tela. As notas devem ser
+informadas pelo usuário no terminal, assim como o número de alunos.
+
+Para rodar, faça:
+gcc ex3.c -o ex3 && ./ex3
+
+## Exemplo de execução

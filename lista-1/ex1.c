@@ -14,7 +14,7 @@ char* concat(char** c1, char** c2, char** join){
         if (i + 1 >= size)
         {
             size = size * 2 + 1;
-            //Realoca para caber na memória
+            //Reallocates to fit string in memory
             result = realloc(result, sizeof(char)*size);
             if(!result){
                 printf("Erro: memória indisponível para realloc");
@@ -30,7 +30,7 @@ char* concat(char** c1, char** c2, char** join){
         if (i + 1 >= size)
         {
             size = size * 2 + 1;
-            //Realoca para caber na memória
+            //Reallocates to fit string in memory
             result = realloc(result, sizeof(char)*size);
             if(!result){
                 printf("Erro: memória indisponível para realloc");
@@ -52,15 +52,16 @@ int main() {
     int charBuffer = 0;
     size_t size = 0, i = 0;
 
-    //O código abaixo recebe duas strings de tamanho desconhecido usando malloc
+    //The code below receives two unknown-size strings using dynamic allocation
     printf("Digite a string 1: ");
     while ((charBuffer=getchar()) != EOF && charBuffer != '\n') {
         if (i + 1 >= size)
         {
             size = size * 2 + 1;
-            //Realoca para caber na memória
+            //Reallocates to fit string in memory
             string1 = realloc(string1, sizeof(char)*size);
             if(!string1){
+                //Realloc failed
                 printf("Erro: memória indisponível para realloc");
                 exit(EXIT_FAILURE);
             }
@@ -70,7 +71,7 @@ int main() {
     }
 
     if (string1 != NULL) {
-        //Termina a string1
+        //Ends string1
         string1[i] = '\0';
     } else {
         printf("Erro: string 1 não pode ser vaiza.\n");
@@ -85,9 +86,10 @@ int main() {
         if (i + 1 >= size)
         {
             size = size * 2 + 1;
-            //Realoca para caber na memória
+            //Reallocates to fit string in memory
             string2 = realloc(string2, sizeof(char)*size);
             if(!string2){
+                //Realloc failed
                 printf("Erro: memória indisponível para realloc");
                 exit(EXIT_FAILURE);
             }
@@ -97,7 +99,7 @@ int main() {
     }
 
     if (string2 != NULL) {
-        //Termina a string2
+        //Ends string2
         string2[i] = '\0';
     } else {
         printf("Erro: string 2 não pode ser vaiza.\n");
