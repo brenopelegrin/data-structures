@@ -53,4 +53,12 @@ informadas pelo usuário no terminal, assim como o número de alunos.
 Para rodar, faça:
 gcc ex3.c -o ex3 && ./ex3
 
-## Exemplo de execução
+## Exemplo de execução no terminal:
+    ~/usp/data-struct/lista-1 main*
+    base ❯ ./ex3
+    Digite o número de alunos: 4
+    Digite a nota do aluno 1: 10
+    Digite a nota do aluno 2: 10
+    Digite a nota do aluno 3: 5
+    Digite a nota do aluno 4: 5
+    Média: 7.50
