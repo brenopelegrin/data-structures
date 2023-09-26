@@ -9,13 +9,21 @@ typedef struct complex{
     double modulus;
 } Complex;
 
-Complex createComplex(double *real, double *imaginary);
-Complex getConjugate(Complex *a);
-double getReal(Complex *a);
-double getModulus(Complex *a);
-void calculateModulus(Complex *a);
+// Operations over one Complex number
+// getReal and getModulus returns by value
+void createComplexFromCart(double *real, double *imaginary, Complex *result);
+void createComplexFromTrig(double *modulus, double *argRad, Complex *result);
+void createConjugate(Complex *z, Complex *result);
+double getReal(Complex *z);
+double getModulus(Complex *z);
+void setReal(Complex *z, double *real);
+void setImaginary(Complex *z, double *imaginary);
+void calculateModulus(Complex *z);
 
-void add(Complex *a, Complex *b, Complex *result);
-void subtract(Complex *a, Complex *b, Complex *result);
-void multiply(Complex *a, Complex *b, Complex *result);
-int divide(Complex *a, Complex *b, Complex *result);
+// Operations between two Complex numbers
+// Division returns a flag, -1 if error of division by zero, 1 if success
+void add(Complex *z1, Complex *z2, Complex *result);
+void subtract(Complex *z1, Complex *z2, Complex *result);
+void multiply(Complex *z1, Complex *z2, Complex *result);
+int divide(Complex *z1, Complex *z2, Complex *result); 
+void multiplyByScalar(Complex *z, double *scalar);
