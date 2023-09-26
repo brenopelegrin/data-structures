@@ -87,10 +87,10 @@ void multiply(Complex *z1, Complex *z2, Complex *result){
     return;
 }
 
-void multiplyByScalar(Complex *z, double *scalar){
+void multiplyByScalar(Complex *z, double *scalar, Complex *result){
     // Calculates the product between a real scalar and a Complex number
-    z->real = z->real * (*scalar);
-    z->imaginary = z->imaginary * (*scalar);
+    result->real = z->real * (*scalar);
+    result->imaginary = z->imaginary * (*scalar);
     return;
 }
 

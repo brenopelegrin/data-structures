@@ -4,7 +4,6 @@
 int main(int argc, char* argv[]){
     // Creates two complex numbers based on user input
     double a1, b1, a2, b2;
-    int op;
     printf("--- Número complexo n1 ---");
     printf("\nDigite a parte real: ");
     scanf("%lf", &a1);
@@ -31,43 +30,58 @@ int main(int argc, char* argv[]){
     printf("\n4 - Divisão (n1 / n2)");
     printf("\n5 - Conjugação de n1");
     printf("\n6 - Conjugação de n2");
-    printf("\n7 - Sair\n");
+    printf("\n7 - Multiplicação de n1 por escalar");
+    printf("\n8 - Multiplicação de n2 por escalar");
+    printf("\n0 - Sair\n");
     Complex result;
-
+    double scalar = 1.0;
+    int op = -1;
     // Waits for user choice, and stop when users chooses option 7 (exit)
-    while(op != 7){
+    while(op != 0){
         printf("\n> Digite a operação que você deseja realizar: ");
         scanf("%d", &op);
         switch(op){
             case 1:
                 add(&n1, &n2, &result);
-                printf("\nResultado: %.4lf + %.4lf i\n", result.real, result.imaginary);
+                printf("Resultado: %.4lf + %.4lf i\n", result.real, result.imaginary);
                 break;
             case 2:
                 subtract(&n1, &n2, &result);
-                printf("\nResultado: %.4lf + %.4lf i\n", result.real, result.imaginary);
+                printf("Resultado: %.4lf + %.4lf i\n", result.real, result.imaginary);
                 break;
             case 3:
                 multiply(&n1, &n2, &result);
-                printf("\nResultado: %.4lf + %.4lf i\n", result.real, result.imaginary);
+                printf("Resultado: %.4lf + %.4lf i\n", result.real, result.imaginary);
                 break;
             case 4:
-                if(divide(&n1, &n2, &result)){
-                    printf("\nResultado: %.4lf + %.4lf i\n", result.real, result.imaginary);
+                if(divide(&n1, &n2, &result) == -1){
+                    printf("Erro: divisão por zero.\n");
                 }
                 else{
-                    printf("\nErro: divisão por zero.\n");
+                    printf("Resultado: %.4lf + %.4lf i\n", result.real, result.imaginary);
                 }
                 break;
             case 5:
                 createConjugate(&n1, &result);
-                printf("\nResultado: %.4lf + %.4lf i\n", result.real, result.imaginary);
+                printf("Resultado: %.4lf + %.4lf i\n", result.real, result.imaginary);
                 break;
             case 6:
                 createConjugate(&n2, &result);
-                printf("\nResultado: %.4lf + %.4lf i\n", result.real, result.imaginary);
+                printf("Resultado: %.4lf + %.4lf i\n", result.real, result.imaginary);
                 break;
             case 7:
+                printf("Digite o escalar: ");
+                scanf("%lf", &scalar);
+                multiplyByScalar(&n1, &scalar, &result);
+                printf("Resultado: %.4lf + %.4lf i\n", result.real, result.imaginary);
+                break;
+            case 8:
+                printf("Digite o escalar: ");
+                scanf("%lf", &scalar);
+                multiplyByScalar(&n2, &scalar, &result);
+                printf("Resultado: %.4lf + %.4lf i\n", result.real, result.imaginary);
+                break;
+            case 0:
                 printf("Saindo...\n");
                 break;
             default:
