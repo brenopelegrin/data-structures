@@ -1,25 +1,22 @@
-//Um módulo para trabalhar com matrizes em C
-//Eu sei que já existem, só quero implementar
-
-typedef struct {
-    int created;//Provavelmente não é a melhor maneira
+typedef struct{
+    int created;
     int t[2];
     float **elements;
 } Matrix;
 
 void Create(Matrix*,int m,int n);
-/*Create a matrix with the size of mxn
-To use it you need first to create a Matrix struct
+/*Cria uma matriz com o tamanho m por n
+Para utilizar é necessário primeiro criar uma variável do tipo Matrix
 */
 
 void SetValue(Matrix*,float val,int m,int n,int *erro);
-/*Sets the value "val" in the position "mn" of the matrix*/
+/*Coloca o valor "val" na posição "mn" da matriz*/
 
 float GetValue(Matrix*,int m,int n,int *erro);
-/*Return the value of the position "mn" of the matrix*/
+/*Retorna o valor na posição "mn" da matrix*/
 
 int IsIdentity(Matrix*,int *erro);
-/*Return 1 if the matrix is the identity, 0 if not*/
+/*Retorna 1 se a matriz for a identidade e 0 caso contrário*/
 
 void SetIdentity(Matrix*,int *erro);
 /*Transforma a matriz na matriz identidade se ela for quadrada*/
@@ -30,10 +27,24 @@ void MultiplyScalar(Matrix *,float,int *erro);
 void MultiplyMatrix(Matrix*,Matrix*,Matrix*,int *erro);
 /*Mutiplica duas matrizes, se for possível*/
 
-void PrintError(int erro);
-/*Imprime qual o erro recebido e algumas informações sobre ele*/
+void SumMatrix(Matrix*,Matrix*,Matrix*,int *);
+/*Soma duas matrizes*/
 
-void PrintMatrix(Matrix*,int *erro);
-/*Imprime a matrix*/
+void SubMatrix(Matrix*,Matrix*,Matrix*,int *);
+/*Subtrai duas matrizes*/
 
-//Acho que tá tudo funcionando acima desse comentário
+void PowerMatrix(Matrix*A,Matrix*B,Matrix*res,int n,int *erro);
+/*Faz a operação de (A*B)^n*/
+
+void MakeEqual(Matrix*,Matrix*,int*);
+/*Deixa duas matrizes cria duas matrizes iguais*/
+
+/*
+------Guia de Erros-------
+Erro = 0:
+    O programa não encontrou nenhum erro em sua execução.
+Erro = 1:
+    O programa encontrou um erro no processo de criação das matrizes, é possível que uma delas não tenha sido criada antes de ser manipulada.
+Erro = 2:
+    O programa encontrou um erro no tamanho das matrizes, pode ser que duas matrizes incompatíveis tenham sido multiplicadas.
+*/

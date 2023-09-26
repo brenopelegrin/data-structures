@@ -37,8 +37,7 @@ float GetValue(Matrix* M,int m,int n,int *erro){
         return M->elements[m][n];
     } else{
         *erro=1;
-        return(-1.); /*A mesma coisa que o professor tinha comentado na aula,
-        retornar alguma coisa aqui não é muito legal*/
+        return(-1.);
     }
 }   
 
@@ -108,6 +107,7 @@ void MultiplyMatrix(Matrix* M1,Matrix* M2,Matrix* Mres,int *erro){
 
     int i,j,k;
     float res;
+    Matrix A,B;
     
     //Verifica se as matrizes foram criadas e podem ser multiplicadas
     if(M1->created!=1 || M2->created!=1){
@@ -124,12 +124,15 @@ void MultiplyMatrix(Matrix* M1,Matrix* M2,Matrix* Mres,int *erro){
         *erro=2;
         return;
     }
+
     //Se chegou até aqui tá tudo certo com as matrizes
+
+    MakeEqual(M1,&A,erro);MakeEqual(M2,&B,erro);
     for(i=0;i<M1->t[0];i++){
         for(j=0;j<M2->t[1];j++){
             res = 0;
             for(k=0;k<M1->t[1];k++){
-                res += GetValue(M1,i,k,erro)*GetValue(M2,k,j,erro);
+                res += GetValue(&A,i,k,erro)*GetValue(&B,k,j,erro);
             }
             SetValue(Mres,res,i,j,erro);
         }
@@ -137,35 +140,115 @@ void MultiplyMatrix(Matrix* M1,Matrix* M2,Matrix* Mres,int *erro){
     return;
 }
 
-void PrintError(int erro){
-    switch (erro)
-    {
-    case 1:
-        printf("Matrix não encontrada: erro 1\nÉ necessário criar a matrix utilizando 'Create()' antes de utiliza-la\n");
-        break;
-    case 2:
-        printf("Tamanho incorreto: erro 2\nVerifique se as operações estão sendo realizadas corretamente, alguns dos possíveis motivos para esse erro são:\nMultiplicação de matrizes feita com tamanhos incorretos\nTentativa de transformar uma matrix não quadrada na matrix identidade");
-        break;
-    default:
-        printf("Não foi detectado nenhum erro\n");
-        break;
+void SumMatrix(Matrix* M1,Matrix* M2,Matrix* Mres,int *erro){
+
+    int i,j;
+
+    if(M1->created!=1 || M2->created!=1){
+        *erro=1;
+        return;
+    } else if(M1->t[0]!=M2->t[0] || M1->t[1]!=M2->t[1]){
+        *erro=2;
+        return;
+    }
+
+    if(Mres->created==1){
+        if(Mres->t[0]!=M1->t[0] || Mres->t[1]!=M1->t[1]){
+            *erro=2;
+            return;
+        }
+    } else{
+        Create(Mres,M1->t[0],M1->t[1]);
+    }
+    //Se chegar até aqui tá tudo certo
+    for(i=0;i<M1->t[0];i++){
+        for(j=0;j<M1->t[1];j++){
+            SetValue(Mres,GetValue(M1,i,j,erro)+GetValue(M2,i,j,erro),i,j,erro);
+        }
     }
     return;
 }
 
-void PrintMatrix(Matrix *M,int *erro){
+void SubMatrix(Matrix* M1,Matrix* M2,Matrix* Mres,int *erro){
 
     int i,j;
 
-    if(M->created!=1){
+    if(M1->created!=1 || M2->created!=1){
         *erro=1;
         return;
+    } else if(M1->t[0]!=M2->t[0] || M1->t[1]!=M2->t[1]){
+        *erro=2;
+        return;
     }
-    for(i=0;i<M->t[0];i++){
-        for(j=0;j<M->t[1];j++){
-            printf("%f ",GetValue(M,i,j,erro));
+
+    if(Mres->created==1){
+        if(Mres->t[0]!=M1->t[0] || Mres->t[1]!=M1->t[1]){
+            *erro=2;
+            return;
         }
-        printf("\n");
+    } else{
+        Create(Mres,M1->t[0],M1->t[1]);
     }
+    //Se chegar até aqui tá tudo certo
+    for(i=0;i<M1->t[0];i++){
+        for(j=0;j<M1->t[1];j++){
+            SetValue(Mres,GetValue(M1,i,j,erro)-GetValue(M2,i,j,erro),i,j,erro);
+        }
+    }
+    return;
+}
+
+void PowerMatrix(Matrix*A,Matrix*B,Matrix*res,int n,int *erro){
+
+    int i;
+    Matrix aux;
+    
+    //Verifica se as matrizes foram criadas e podem ser multiplicadas
+    if(A->created!=1 || B->created!=1){
+        *erro=1;
+        return;
+    
+    } else if(A->t[1]!=B->t[0] || A->t[0]!=B->t[1]){ //Verifica se o tamanho está correto
+        *erro=2;
+        return;
+    }
+    if(res->created!=1){
+        Create(res,A->t[0],B->t[1]);
+    } else if(res->t[0]!=A->t[0] || res->t[1]!=B->t[1]){
+        *erro=2;
+        return;
+    }
+    //Se chegou até aqui tá tudo certo
+    MultiplyMatrix(A,B,&aux,erro);
+    MultiplyMatrix(A,B,res,erro);
+    for(i=1;i<n;i++){
+        IsIdentity(res,erro);
+        MultiplyMatrix(res,&aux,res,erro);
+    }
+    return;
+}
+
+void MakeEqual(Matrix *M1,Matrix *M2,int *erro){
+
+    int i,j;
+
+    if(M1->created!=1){
+        *erro=1;
+        return;
+    } if(M2->created==1){
+        if(M1->t[0]!=M2->t[0] || M1->t[1]!=M2->t[1]){
+            *erro = 2;
+            return;
+        }
+    } else{
+        Create(M2,M1->t[0],M1->t[1]);
+    }
+    //Verifica tudo antes
+    for(i=0;i<M1->t[0];i++){
+        for(j=0;j<M1->t[1];j++){
+            SetValue(M2,GetValue(M1,i,j,erro),i,j,erro);
+        }
+    }
+    
     return;
 }
