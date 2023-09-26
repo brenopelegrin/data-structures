@@ -26,4 +26,4 @@ void add(Complex *z1, Complex *z2, Complex *result);
 void subtract(Complex *z1, Complex *z2, Complex *result);
 void multiply(Complex *z1, Complex *z2, Complex *result);
 int divide(Complex *z1, Complex *z2, Complex *result); 
-void multiplyByScalar(Complex *z, double *scalar);
+void multiplyByScalar(Complex *z, double *scalar, Complex *result);
