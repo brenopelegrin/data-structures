@@ -1,3 +1,3 @@
-gcc main.c matrix.c -o a.out
+gcc main.c tad-matrix/matrix.c -o a.out
 ./a.out
 rm a.out
