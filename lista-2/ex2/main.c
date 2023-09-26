@@ -98,7 +98,6 @@ int main(int argc, char *argv[]){
         PrintMatrix(&C,&erro);
         break;
     case 5:
-        int p;
 
         printf("Insira o tamanho da primeira matriz (no formato \"m n\")\n");
         scanf("%d %d",&mA,&nA);

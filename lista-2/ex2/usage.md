@@ -1,13 +1,21 @@
 Instruções de uso para o exercício 2 da lista 2
 
 # Compilação e Execução do programa
-Para compilar o programa utilize o comando
 
-gcc main.c matrix.c -o a.out
-
-Após isso, execute o arquivo a.out com o comando
-
-./a.out
+Para compilar, primeiramente entre no diretório do ex1:
+```bash
+cd ex1
+```
+Em seguida, se estiver em um SO baseado em UNIX e tiver o ``make`` e ``GCC`` instalados:
+```bash
+make clean && make
+```
+Após isso, serão gerados os arquivos compilados para o main e o tad-complex no diretório build.
+Para rodar, faça:
+```
+cd ./build && ./main.o
+```
+Se estiver no Windows, compile e rode manualmente manualmente, baseando-se no script do Makefile.
 
 # Como usar
 Ao executar o programa uma mensagem irá solicitar qual a operação a ser feita, com cada uma delas associada à um número.
