@@ -1,6 +1,6 @@
 #include<stdlib.h>
 #include<stdio.h>
-#include "mymatrix.h"
+#include "tad-matrix/matrix.h"
 
 void PrintMatrix(Matrix*,int*);
 void PrintError(int);
@@ -81,7 +81,7 @@ int main(int argc, char *argv[]){
         Create(&B,mB,nB);
 
         if(nA!=mB){
-            printf("O tamanho das matrizes não é compatível");
+            printf("O tamanho das matrizes não é compatível\n");
             break;
         } else{
             Create(&C,mA,nB);
@@ -109,7 +109,7 @@ int main(int argc, char *argv[]){
         Create(&B,mB,nB);
 
         if(nA!=mB || mA!=nB){
-            printf("O tamanho das matrizes não é compatível");
+            printf("O tamanho das matrizes não é compatível\n");
             break;
         } else{
             Create(&C,mA,nB);
@@ -159,7 +159,7 @@ void PrintError(int erro){
         printf("Matrix não encontrada: erro 1\nÉ necessário criar a matrix utilizando 'Create()' antes de utiliza-la\n");
         break;
     case 2:
-        printf("Tamanho incorreto: erro 2\nVerifique se as operações estão sendo realizadas corretamente, alguns dos possíveis motivos para esse erro são:\nMultiplicação de matrizes feita com tamanhos incorretos\nTentativa de transformar uma matrix não quadrada na matrix identidade");
+        printf("Tamanho incorreto: erro 2\nVerifique se as operações estão sendo realizadas corretamente, alguns dos possíveis motivos para esse erro são:\nMultiplicação de matrizes feita com tamanhos incorretos\nTentativa de transformar uma matrix não quadrada na matrix identidade\n");
         break;
     default:
         break;

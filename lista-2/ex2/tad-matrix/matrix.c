@@ -1,6 +1,6 @@
 #include<stdlib.h>
 #include<stdio.h>
-#include "mymatrix.h"
+#include "matrix.h"
 
 void Create(Matrix *M,int m,int n){
 
