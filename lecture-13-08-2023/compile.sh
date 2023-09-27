@@ -1,0 +1,1 @@
+cd tad-conjuntos && gcc -c -o conjuntos.o conjuntos.c && cd .. && gcc -I./tad-conjuntos/ -o using-tad.o using-tad.c ./tad-conjuntos/conjuntos.o && ./using-tad.o
