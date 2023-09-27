@@ -1,19 +1,19 @@
 CC = gcc
 CFLAGS = -Wall
 
-target = matrix
+TARGET = matrix
 
 default: main
 
 main: tadmatrix
-	@echo "--- Compilando main ---"
-	$(CC) $(CFLAGS) -I./tad-matrix/ -o ./build/main.o ./main.c ./build/tad-matrix.o -lm
-	@echo "--- Compilação concluída ---\n"
+	@echo "=== Compiling main ==="
+	$(CC) $(CFLAGS) -I./tad-matrix/ -o ./build/main.o  ./main.c ./build/tad-matrix.o -lm
+	@echo "=== Done compiling main ==="
 
 tadmatrix:
-	@echo "--- Compilando tad-matrix ---"
+	@echo "=== Compiling tad-matrix ==="
 	$(CC) $(CFLAGS) -c -o ./build/tad-matrix.o ./tad-matrix/matrix.c
-	@echo "--- Compilação concluída ---\n"
+	@echo "=== Done compiling tad-matrix ===\n"
 
-clean: 
+clean:
 	rm -rf ./build/*

@@ -15,7 +15,14 @@ int main(int argc, char *argv[]){
     float val;
     Matrix A,B,C;
 
-    printf("Insira o número da operação que deseja realizar:\n1:Soma de Matrizes\n2:Subtração de Matrizes\n3:Multiplicação de matriz por escalar\n4:Multiplicação de matrizes\n5:Potência de multiplicação de matrizes (para matrizes A e B e a potência n seria (A*B)^n)\nInsira a operação desejada: ");
+    printf("\
+Insira o número da operação que deseja realizar:\n\
+1: Soma de Matrizes\n\
+2: Subtração de Matrizes\n\
+3: Multiplicação de matriz por escalar\n\
+4: Multiplicação de matrizes\n\
+5: Potência de multiplicação de matrizes (para matrizes A e B e a potência n seria (A*B)^n)\n\
+> Insira a operação desejada: ");
     scanf("%d",&op);
     switch(op)
     {
