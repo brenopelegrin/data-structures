@@ -10,3 +10,7 @@ podem apresentar resultados diferentes.
 
 As instruções de uso e compilação de cada exercício estão expostas nos arquivos instructions.md dentro de cada diretório.
 Foi implementado um arquivo Makefile para cada exercício, para auxiliar na compilação.
+
+Alunos:
+- Breno Henrique Pelegrin da Silva: implementou o tad-complex
+- Pedro Martins de Oliveira: implementou o tad-matrix
