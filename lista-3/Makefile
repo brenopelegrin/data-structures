@@ -1,19 +1,18 @@
 CC = gcc
 CFLAGS = -Wall
 
-TARGET = complexos
+TARGET = linkedlistqueue
 
 default: main
 
-main: tadcomplex
-	@echo "=== Compiling main ==="
-	$(CC) $(CFLAGS) -I./tad-complex/ -o ./build/main.o  ./main.c ./build/tad-complex.o -lm
-	@echo "=== Done compiling main ==="
+main: tadqueue
+	@echo "=== Not implemented ===""
 
-tadcomplex:
-	@echo "=== Compiling tad-complex ==="
-	$(CC) $(CFLAGS) -c -o ./build/tad-complex.o ./tad-complex/complex.c
-	@echo "=== Done compiling tad-complex ===\n"
+tadqueue: tadlinkedlist
+	@echo "=== Not implemented ===""
+
+tadlinkedlist:
+	@echo "=== Not implemented ===""
 
 clean:
 	rm -rf ./build/*
