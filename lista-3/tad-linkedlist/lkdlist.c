@@ -117,7 +117,7 @@ void lkdlist_removeItem(LkdList* list, int idx, int* flag){
 void lkdlist_printList(LkdList* list, int* flag){
     for(int i=0; i<list->size; i++){
         Node* currNode = lkdlist_getNode(list, i, flag);
-        printf("%lf\n", currNode->data);
+        printf("%ld\n", currNode->data);
     }
 }
 
