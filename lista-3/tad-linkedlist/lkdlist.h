@@ -1,12 +1,24 @@
-// Error codes
-
-#define LKDLIST_ERROR_CANT_ALLOCATE_NODE -1
+#define LKDLIST_ERROR_CANT_ALLOCATE_LIST -1
+#define LKDLIST_ERROR_CANT_ALLOCATE_NODE -2
+#define LKDLIST_ERROR_INDEX_OUT_OF_BOUNDS -3
 #define LKDLIST_SUCCESS 1
 
-typedef struct doublenode doubleNode;
+typedef struct node Node;
 
-typedef struct doublelkdlist doubleLkdList;
+typedef struct lkdlist LkdList;
 
-doubleNode* lkdlist_double_createNode(int* flag);
+LkdList* lkdlist_createList(int *flag);
 
-doubleLkdList* lkdlist_double_createList(int* flag, int initialSize);
+void lkdlist_addItem(LkdList* list, double value, int* flag);
+
+Node* lkdlist_getNode(LkdList* list, int idx, int *flag);
+
+double* lkdlist_getData(LkdList* list, int idx, int *flag);
+
+void lkdlist_removeItem(LkdList* list, int idx, int* flag);
+
+void lkdlist_printList(LkdList* list, int* flag);
+
+void lkdlist_deleteList(LkdList* list);
+
+int lkdlist_isOnList(LkdList* list, double value);
