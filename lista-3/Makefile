@@ -1,18 +1,26 @@
 CC = gcc
 CFLAGS = -Wall
 
-TARGET = linkedlistqueue
+TARGET = linkelistqueue
+SRCS = main.c tad-queue/queue.c tad-linkedlist/lkdlist.c
+OBJS = main.o tad-queue/queue.o tad-linkedlist/lkdlist.o
 
-default: main
+all: $(TARGET)
 
-main: tadqueue
-	@echo "=== Not implemented ===""
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
 
-tadqueue: tadlinkedlist
-	@echo "=== Not implemented ===""
+main.o: main.c
+	$(CC) $(CFLAGS) -c main.c
 
-tadlinkedlist:
-	@echo "=== Not implemented ===""
+queue.o: queue.c lkdlist.h
+	$(CC) $(CFLAGS) -c tad-queue/queue.c
+
+lkdlist.o: lkdlist.c lkdlist.h
+	$(CC) $(CFLAGS) -c tad-linkedlist/lkdlist.c
 
 clean:
-	rm -rf ./build/*
+	rm -f $(TARGET) 
+	rm -r *.o
+	rm tad-linkedlist/*.o
+	rm tad-queue/*.o

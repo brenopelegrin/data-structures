@@ -2,28 +2,77 @@
 #include<stdio.h>
 #include"queue.h"
 
-Queue* create(void){
-    Queue *q;
-    q->l=create_list();
-    return q;
+Queue* create(int *flag){
+    Queue *Q=(Queue*)malloc(sizeof(Queue));
+    if(Q==NULL){
+        *flag=MEMORY_ALLOCATION_ERROR;
+        return NULL;
+    }
+    Q->created=1;
+    Q->l=(LkdList*)malloc(sizeof(LkdList));
+    /*Tá dando um tipo incompleto no malloc, quando eu defino o struct no header ele some, isso é uma boa prática?*/
+    Q->l=lkdlist_createList(flag);
+    return Q;
 }
 
-void insert(Queue *Q,float x,int *erro){
-    
+
+void insert(Queue *Q,int ele,int *flag){
+    if(Q->created!=1){
+        *flag=CREATION_ERROR;
+        return;
+    }
+    lkdlist_addItem(Q->l,ele,flag);
+    return;
 }
-/*Insere um elemento no fim da fila*/
 
-void pop(Queue*,float,int*);
-/*Retira o primeiro elemento da fila*/
 
-int len(Queue*,int*);
-/*Retorna o tamanho da fila*/
+int* pop(Queue *Q,int *flag){
 
-int haveElement(Queue*,float*,int*);
-/*Retorna se um elemento existe na fila*/
+    int *ele=(int*)malloc(sizeof(int));
 
-void invert(Queue*,int*);
-/*Inverte os elementos da fila*/
+    ele=lkdlist_getData(Q->l,0,flag);
+    lkdlist_removeItem(Q->l,0,flag);
+    return ele;
+}
 
-float get(Queue*,int,int*);
-/*Retorna o n-ésimo elemento da fila*/
+
+int len(Queue *Q,int *flag){
+    if(Q->created!=1){
+        *flag=CREATION_ERROR;
+        return -1;
+    } else{
+        return Q->l->size;
+    }
+}
+
+
+int haveElement(Queue *Q,int ele,int *flag){
+
+    Node *p;
+
+    if(Q->created!=1){
+        *flag=CREATION_ERROR;
+        return -1;
+    }
+
+    p=lkdlist_getNode(Q->l,0,flag);
+    while (p!=NULL){
+        if(p->data==ele){
+            return 1;
+        }
+        p=p->next;
+    }
+    return 0;
+}
+
+
+void invert(Queue*,int*){
+
+}
+
+
+int* getElement(Queue *Q,int n,int *flag){
+
+    return lkdlist_getData(Q->l,n,flag);
+
+}
