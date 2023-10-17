@@ -3,7 +3,7 @@
 #include<stdio.h>
 
 typedef struct node {
-    double data;
+    int data;
     struct node* next;
 } Node;
 
@@ -26,7 +26,7 @@ LkdList* lkdlist_createList(int *flag){
     return list;
 }
 
-void lkdlist_addItem(LkdList* list, double value, int* flag){
+void lkdlist_addItem(LkdList* list, int value, int* flag){
     Node* newNode = (Node*) malloc(sizeof(Node));
 
     if(newNode == NULL){
@@ -70,7 +70,7 @@ Node* lkdlist_getNode(LkdList* list, int idx, int *flag){
     }
 }
 
-double* lkdlist_getData(LkdList* list, int idx, int *flag){
+int* lkdlist_getData(LkdList* list, int idx, int *flag){
     Node* currNode = lkdlist_getNode(list, idx, flag);
     if(currNode == NULL){
         return NULL;
@@ -135,6 +135,20 @@ void lkdlist_deleteList(LkdList* list){
     return;
 }
 
-int lkdlist_isOnList(LkdList* list, double value){
-    return 1;
+void lkdlist_reverseList(LkdList* list){
+    return;
+}
+
+int lkdlist_isOnList(LkdList* list, int value){
+    Node* currNode = list->first;
+    for(int i=0; i<list->size; i++){
+        if(currNode->data == value){
+            return 1;
+        }
+        if(currNode->next == NULL){
+            break;
+        }
+        currNode = currNode->next;
+    }
+    return 0;
 }
