@@ -4,7 +4,8 @@
 
 int main(int argc, char *argv[]){
 
-    int command,flag,ele,n;
+    int command,flag;
+    int ele,n,*pi;
     Queue *Q;
     /*Criar uma fila*/
     command=-1;
@@ -48,29 +49,54 @@ int main(int argc, char *argv[]){
             insert(Q,ele,&flag);
             if(flag==PROCESS_SUCESS) 
             printf("\nNúmero inserido com sucesso\n");
+            else
+            printf("Ocorreu um problema inesperado\n");
             break;
         case 2:
+            if(len(Q,&flag)==0){
+                printf("Não é possível tirar um elemento de uma fila vazia\n");
+                break;
+            }
             printf("Retirando primeiro elemento\n");
             pop(Q,&flag);
-            if(flag==PROCESS_SUCESS)
+            if(flag==PROCESS_SUCESS){
             printf("Elemento retirado com sucesso\n");
             break;
-        case 3:
-            int *p;
-            printf("Capturando o primeiro elemento\n");
-            p=pop(Q,&flag);
-            if(flag==PROCESS_SUCESS)
-            printf("Elemento capturado com sucesso, seu valor é %d\n",*p);
-            //Talvez isso não funcione
+            }
+            else{
+            printf("Ocorreu um problema inesperado\n");
             break;
+            }
+        case 3:
+            if(len(Q,&flag)==0){
+                printf("Não é possível obter um elemento de uma fila vazia\n");
+                break;
+            }
+            printf("Capturando o primeiro elemento\n");
+            pi=pop(Q,&flag);
+            if(flag==PROCESS_SUCESS){
+            printf("Elemento capturado com sucesso, seu valor é %d\n",*pi);
+            break;
+            }
+            else{
+            printf("Ocorreu um problema inesperado\n");
+            break;
+            }
         case 4:
-            printf("O tamanho da fila é: %d\n",len(Q,&flag));
+            ele=len(Q,&flag);
+            if(flag==PROCESS_SUCESS)
+            printf("O tamanho da fila é: %d\n",ele);
+            else
+            printf("Ocorreu um problema inesperado\n");
             break;
         case 5:
-            if(len(Q,&flag)){
+            if((len(Q,&flag)) && flag==PROCESS_SUCESS){
                 printf("A fila não está vazia\n");
-            } else{
+            } else if(flag==PROCESS_SUCESS){
                 printf("A fila está vazia\n");
+            } else{
+                printf("%d",flag);
+                printf("Ocorreu um problema inesperado\n");
             }
             break;
         case 6:
@@ -81,16 +107,18 @@ int main(int argc, char *argv[]){
             } else if(flag==PROCESS_SUCESS){
                 printf("\nO elemento %d não está na fila\n",ele);
             } else{
+                printf("%d",flag);
                 printf("\nOcorreu um erro inesperado\n");
             }
             break;
         case 7:
             printf("Insira uma posição para encontrar o elemento: ");
             scanf("%d",&n);
-            if(n>len(Q,&flag)-1){
-                printf("\nVocê inseriu um tamanho inválido burro\n");
-                break;
-            }
+            if(n>len(Q,&flag)-1)
+            printf("\nA fila não possui nenhum elemento nessa posição\n");
+            pi = getElement(Q,n,&flag);
+            if(flag==PROCESS_SUCESS)
+            printf("\nO elemento na posição %d é %d\n",n,*pi);
             break;
         default:
             printf("Parece que você inseriu um número inválido :( , insira novamente\n");
