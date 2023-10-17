@@ -1,26 +1,37 @@
-#include"./../lkdlist-net.h"
+#include"./../tad-linkedlist/lkdlist.h"
+
+#define PROCESS_SUCESS 1
+#define CREATION_ERROR 2
+#define MEMORY_ALLOCATION_ERROR 3
 
 typedef struct {
-    List *l;
+    int created;
+    LkdList *l;
 } Queue;
 
-Queue* create(void);
+Queue* create(int *flag);
 /*Cria a fila*/
+//Ok
 
-void insert(Queue*,float,int*);
+void insert(Queue*,int,int*);
 /*Insere um elemento no fim da fila*/
+//Ok
 
-void pop(Queue*,float,int*);
+int* pop(Queue*,int*);
 /*Retira o primeiro elemento da fila*/
+//Ok
 
 int len(Queue*,int*);
 /*Retorna o tamanho da fila*/
+//Ok
 
-int haveElement(Queue*,float*,int*);
+int haveElement(Queue*,int,int*);
 /*Retorna se um elemento existe na fila*/
+//Ok
 
 void invert(Queue*,int*);
 /*Inverte os elementos da fila*/
 
-float get(Queue*,int,int*);
+int* getElement(Queue*,int,int*);
 /*Retorna o n-ésimo elemento da fila*/
+//Ok
