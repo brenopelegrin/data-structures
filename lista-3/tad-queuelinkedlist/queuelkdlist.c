@@ -154,7 +154,6 @@ int lkdlist_isEmpty(LkdList* list){
     }
 }
 
-
 // Below we have the Queue implementation
 
 Queue* create(int *flag){
@@ -179,10 +178,9 @@ void insert(Queue *Q, int ele, int *flag){
 }
 
 
-int* pop(Queue *Q,int *flag){
-    int *ele=(int*)malloc(sizeof(int));
-
-    ele = lkdlist_getData(Q->l,0,flag);
+int pop(Queue *Q, int *flag){
+    int ele = *lkdlist_getData(Q->l,0,flag);
+    printf("pop idx=%d, val=%d\n", 0, ele);
     lkdlist_removeItem(Q->l,0,flag);
     return ele;
 }
@@ -231,8 +229,8 @@ void invert(Queue*,int*){
 
 
 int* getElement(Queue *Q,int n,int *flag){
-
-    return lkdlist_getData(Q->l,n,flag);
-
+    int* val = lkdlist_getData(Q->l,n,flag);
+    printf("getElement idx=%d, val=%d\n", n, *val);
+    return val;
 }
 

@@ -73,11 +73,11 @@ Queue* create(int *flag);
 /*Cria a fila*/
 //Ok
 
-void insert(Queue*,int,int*);
+void insert(Queue*, int, int*);
 /*Insere um elemento no fim da fila*/
 //Ok
 
-int* pop(Queue*,int*);
+int pop(Queue*, int*);
 /*Retira o primeiro elemento da fila*/
 //Ok
 
