@@ -1,26 +1,24 @@
 CC = gcc
 CFLAGS = -Wall
 
-TARGET = linkelistqueue
-SRCS = main.c tad-queue/queue.c tad-linkedlist/lkdlist.c
-OBJS = main.o tad-queue/queue.o tad-linkedlist/lkdlist.o
+TARGET = linkedlistqueue
 
-all: $(TARGET)
+default: main
 
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+main: tadqueue
+	@echo "compiling main\n"
+	$(CC) $(CFLAGS) -I./tad-linkedlist -I./tad-queue -o build/main.o main.c -lm ./tad-linkedlist/build/lkdlist.o -lm ./tad-queue/build/queue.o
 
-main.o: main.c
-	$(CC) $(CFLAGS) -c main.c
+tadqueue: tadlinkedlist
+	@echo "compiling tad-queue\n"
+	$(CC) $(CFLAGS) -c -o tad-queue/build/queue.o ./tad-queue/queue.c
 
-queue.o: queue.c lkdlist.h
-	$(CC) $(CFLAGS) -c tad-queue/queue.c
-
-lkdlist.o: lkdlist.c lkdlist.h
-	$(CC) $(CFLAGS) -c tad-linkedlist/lkdlist.c
-
+tadlinkedlist:
+	@echo "compiling tad-linkedlist\n"
+	$(CC) $(CFLAGS) -c -o tad-linkedlist/build/lkdlist.o ./tad-linkedlist/lkdlist.c
+	
 clean:
-	rm -f $(TARGET) 
-	rm -r *.o
-	rm tad-linkedlist/*.o
-	rm tad-queue/*.o
+	@echo "cleaning build"
+	rm -rf ./build/*
+	rm -rf ./tad-linkedlist/build/*
+	rm -rf ./tad-queue/build/*

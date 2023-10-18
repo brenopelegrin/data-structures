@@ -11,7 +11,7 @@ Queue* create(int *flag){
     Q->created=1;
     Q->l=(LkdList*)malloc(sizeof(LkdList));
     /*Tá dando um tipo incompleto no malloc, quando eu defino o struct no header ele some, isso é uma boa prática?*/
-    Q->l=lkdlist_createList(flag);
+    Q->l = (LkdList*) lkdlist_createList(flag);
     return Q;
 }
 
