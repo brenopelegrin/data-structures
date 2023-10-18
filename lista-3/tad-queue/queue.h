@@ -1,4 +1,4 @@
-#include"./../tad-linkedlist/lkdlist.h"
+#include"../tad-linkedlist/lkdlist.h"
 
 #define PROCESS_SUCESS LKDLIST_SUCCESS 
 #define CREATION_ERROR 2
