@@ -41,6 +41,7 @@ int len(Queue *Q,int *flag){
         *flag=CREATION_ERROR;
         return -1;
     } else{
+        *flag=PROCESS_SUCESS;
         return Q->l->size;
     }
 }
@@ -54,8 +55,15 @@ int haveElement(Queue *Q,int ele,int *flag){
         *flag=CREATION_ERROR;
         return -1;
     }
-
+    if(len(Q,flag)==0){
+        *flag=PROCESS_SUCESS;
+        return 0;
+    }
     p=lkdlist_getNode(Q->l,0,flag);
+    //Com a lista vazia ele não consegue pegar nem o primeiro node
+    if(*flag!=LKDLIST_SUCCESS)
+    return -1;
+    *flag=PROCESS_SUCESS;
     while (p!=NULL){
         if(p->data==ele){
             return 1;

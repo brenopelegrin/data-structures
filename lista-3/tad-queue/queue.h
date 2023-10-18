@@ -1,6 +1,6 @@
 #include"./../tad-linkedlist/lkdlist.h"
 
-#define PROCESS_SUCESS 1
+#define PROCESS_SUCESS LKDLIST_SUCCESS 
 #define CREATION_ERROR 2
 #define MEMORY_ALLOCATION_ERROR 3
 
