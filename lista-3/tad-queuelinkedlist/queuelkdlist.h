@@ -1,14 +1,20 @@
+// Linked list definitions
 #define LKDLIST_ERROR_CANT_ALLOCATE_LIST -1
 #define LKDLIST_ERROR_CANT_ALLOCATE_NODE -2
 #define LKDLIST_ERROR_INDEX_OUT_OF_BOUNDS -3
+/*  Nota: os índices da lista encadeada começam em 0
+    e vão até size-1, seguindo a convenção do C.
+*/
+
 #define LKDLIST_ERROR_NOT_IMPLEMENTED 0
 #define LKDLIST_SUCCESS 1
 
-// queue.c definitions
+// Queue definitions
 #define PROCESS_SUCESS LKDLIST_SUCCESS 
 #define CREATION_ERROR 2
 #define MEMORY_ALLOCATION_ERROR 3
 
+// Linked list structs
 typedef struct node {
     int data;
     struct node* next;
@@ -20,6 +26,7 @@ typedef struct lkdlist {
     int size;
 } LkdList;
 
+// Queue struct
 typedef struct {
     int created;
     LkdList *l;
@@ -73,12 +80,32 @@ int lkdlist_getListSize(LkdList* list);
 /*  Retorna o tamanho da lista */
 
 int lkdlist_isEmpty(LkdList* list);
-/* Verifica se a lista está vazia.
+/*  Verifica se a lista está vazia.
     Se vazia, retorna 1.
     Se não vazia, retorna 0.
 */
 
 LkdList* lkdlist_createReversedList(LkdList* old, int* flag);
+/*  Cria uma outra lista, que será a inversa da lista antiga.
+    Recomenda-se que, após retornada a nova lista, o usuário
+    delete a lista antiga e utilize a nova.
+    
+    Exemplo:
+        int flag;
+        LkdList* old = lkdlist_createList(flag);
+        lkdlist_addItem(old, 1, flag);
+        lkdlist_addItem(old, 2, flag);
+        lkdlist_addItem(old, 3, flag);
+        LkdList* reversed = lkdlist_createReversedList(old, flag);
+        lkdlist_deleteList(old);
+        old = reversed;
+*/
+
+void lkdlist_setData(LkdList* list, int idx, int value, int *flag);
+/*  Altera valor de um Node da lista para value buscando por índice.
+    Se sucesso, flag = 1.
+    Caso falhe, a flag será um erro.
+*/
 
 Queue* create(int *flag);
 /*Cria a fila*/

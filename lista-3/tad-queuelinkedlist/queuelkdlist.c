@@ -188,6 +188,15 @@ int lkdlist_isEmpty(LkdList* list){
     }
 }
 
+void lkdlist_setData(LkdList* list, int idx, int value, int *flag){
+    Node* currNode = lkdlist_getNode(list, idx, flag);
+    if(currNode == NULL){
+        return;
+    }
+    currNode->data = value;
+    return;
+}
+
 // Below we have the Queue implementation
 
 Queue* create(int *flag){
