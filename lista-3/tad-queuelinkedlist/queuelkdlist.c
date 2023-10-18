@@ -255,8 +255,11 @@ int haveElement(Queue *Q,int ele,int *flag){
 }
 
 
-void invert(Queue*, int*){
-
+void invert(Queue *Q, int *flag){
+    LkdList *L=lkdlist_createReversedList(Q->l,flag);
+    free(Q->l);
+    Q->l=L;
+    return;
 }
 
 void printFila(Queue* Q, int* flag){
@@ -267,7 +270,6 @@ void printFila(Queue* Q, int* flag){
 
 int* getElement(Queue *Q,int n,int *flag){
     int* val = lkdlist_getData(Q->l,n,flag);
-    printf("getElement idx=%d, val=%d\n", n, *val);
     return val;
 }
 
