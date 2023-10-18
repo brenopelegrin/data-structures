@@ -142,6 +142,18 @@ int lkdlist_isOnList(LkdList* list, int value){
     return 0;
 }
 
+int lkdlist_getListSize(LkdList* list){
+    return list->size;
+}
+
+int lkdlist_isEmpty(LkdList* list){
+    if(list->size == 0){
+        return 1;
+    } else{
+        return 0;
+    }
+}
+
 
 // Below we have the Queue implementation
 
@@ -151,36 +163,33 @@ Queue* create(int *flag){
         *flag=MEMORY_ALLOCATION_ERROR;
         return NULL;
     }
-    Q->created=1;
-    Q->l=(LkdList*)malloc(sizeof(LkdList));
-    /*Tá dando um tipo incompleto no malloc, quando eu defino o struct no header ele some, isso é uma boa prática?*/
+    Q->created = 1;
     Q->l = (LkdList*) lkdlist_createList(flag);
     return Q;
 }
 
 
-void insert(Queue *Q,int ele,int *flag){
+void insert(Queue *Q, int ele, int *flag){
     if(Q->created!=1){
         *flag=CREATION_ERROR;
         return;
     }
-    lkdlist_addItem(Q->l,ele,flag);
+    lkdlist_addItem(Q->l, ele, flag);
     return;
 }
 
 
 int* pop(Queue *Q,int *flag){
-
     int *ele=(int*)malloc(sizeof(int));
 
-    ele=lkdlist_getData(Q->l,0,flag);
+    ele = lkdlist_getData(Q->l,0,flag);
     lkdlist_removeItem(Q->l,0,flag);
     return ele;
 }
 
 
 int len(Queue *Q,int *flag){
-    if(Q->created!=1){
+    if(Q->created != 1){
         *flag=CREATION_ERROR;
         return -1;
     } else{
@@ -191,7 +200,6 @@ int len(Queue *Q,int *flag){
 
 
 int haveElement(Queue *Q,int ele,int *flag){
-
     Node *p;
 
     if(Q->created!=1){
