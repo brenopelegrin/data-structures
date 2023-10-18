@@ -26,20 +26,48 @@ typedef struct {
 } Queue;
 
 LkdList* lkdlist_createList(int *flag);
+/*  Cria uma lista encadeada.
+    Se sucesso, flag = 1 e retorna o ponteiro para LkdList.
+    Caso falhe, a flag será um erro e retorna ponteiro NULL.
+*/
 
 void lkdlist_addItem(LkdList* list, int value, int* flag);
+/*  Adiciona item à lista encadeada com o valor value.
+    Se sucesso, flag = 1.
+*/
 
 Node* lkdlist_getNode(LkdList* list, int idx, int *flag);
+/*  Retorna um node da lista encadeada buscando por índice.
+    Se sucesso, flag = 1 e retorna o ponteiro para Node.
+    Caso falhe, a flag será um erro e retorna ponteiro NULL.
+*/
 
 int* lkdlist_getData(LkdList* list, int idx, int *flag);
+/*  Retorna valor de um Node da lista buscando por índice.
+    Se sucesso, flag = 1 e retorna o ponteiro para o valor.
+    Caso falhe, a flag será um erro e retorna ponteiro NULL.
+*/
 
 void lkdlist_removeItem(LkdList* list, int idx, int* flag);
+/*  Remove um Node da lista buscando por índice.
+    Se sucesso, flag = 1.
+    Caso falhe, a flag será um erro.
+*/
 
 void lkdlist_printList(LkdList* list, int* flag);
+/*  Imprime os valores dos Node da lista.
+    Se sucesso, flag = 1.
+    Caso falhe, a flag será um erro.
+*/
 
 void lkdlist_deleteList(LkdList* list);
+/*  Libera a memória dos Node e da LkdList. */
 
 int lkdlist_isOnList(LkdList* list, int value);
+/*  Verifica se existe um Node com o mesmo valor value na lista.
+    Se existe, retorna 1.
+    Se não existe, retorna 0.
+*/
 
 Queue* create(int *flag);
 /*Cria a fila*/
