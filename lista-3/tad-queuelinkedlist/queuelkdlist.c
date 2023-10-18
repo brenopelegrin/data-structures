@@ -83,6 +83,7 @@ void lkdlist_removeItem(LkdList* list, int idx, int* flag){
         if(prevNode == NULL){
             return;
         }
+        
         Node* toBeFreed = prevNode->next;
         prevNode->next = toBeFreed->next;
         free(toBeFreed);
@@ -177,10 +178,8 @@ void insert(Queue *Q, int ele, int *flag){
     return;
 }
 
-
 int pop(Queue *Q, int *flag){
     int ele = *lkdlist_getData(Q->l,0,flag);
-    printf("pop idx=%d, val=%d\n", 0, ele);
     lkdlist_removeItem(Q->l,0,flag);
     return ele;
 }
@@ -192,7 +191,7 @@ int len(Queue *Q,int *flag){
         return -1;
     } else{
         *flag=PROCESS_SUCESS;
-        return Q->l->size;
+        return lkdlist_getListSize(Q->l);
     }
 }
 
@@ -223,8 +222,13 @@ int haveElement(Queue *Q,int ele,int *flag){
 }
 
 
-void invert(Queue*,int*){
+void invert(Queue*, int*){
 
+}
+
+void printFila(Queue* Q, int* flag){
+    lkdlist_printList(Q->l, flag);
+    return;
 }
 
 

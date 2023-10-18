@@ -69,6 +69,11 @@ int lkdlist_isOnList(LkdList* list, int value);
     Se não existe, retorna 0.
 */
 
+int lkdlist_getListSize(LkdList* list);
+/*  Retorna o tamanho da lista */
+
+int lkdlist_isEmpty(LkdList* list);
+
 Queue* create(int *flag);
 /*Cria a fila*/
 //Ok
@@ -95,4 +100,7 @@ void invert(Queue*,int*);
 int* getElement(Queue*,int,int*);
 /*Retorna o n-ésimo elemento da fila*/
 //Ok
+
+void printFila(Queue*, int*);
+
 

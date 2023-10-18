@@ -5,13 +5,14 @@
 void printOperacoes(){
     printf("Manipulador de Fila\u00AE\n");
     printf("---------------------\n");
-    printf("1 - Inserir elemento\n");
-    printf("2 - Deletar elemento\n");
-    printf("3 - Obter elemento (pop)\n");
+    printf("1 - Inserir elemento no final\n");
+    printf("2 - Deletar elemento no topo\n");
+    printf("3 - Obter elemento no topo (pop)\n");
     printf("4 - Imprimir tamanho atual da fila\n");
     printf("5 - Verificar se fila está vazia\n");
     printf("6 - Verificar se elemento existe na fila\n");
     printf("7 - Imprimir elemento em determinado índice\n");
+    printf("8 - Imprimir fila do primeiro ao último elemento\n");
     printf("0 - Sair\n");
     return;
 }
@@ -117,10 +118,18 @@ int main(int argc, char *argv[]){
                 printf("Insira uma posição para encontrar o elemento: ");
                 scanf("%d",&n);
                 if(n>len(Q,&flag)-1)
-                printf("\nA fila não possui nenhum elemento nessa posição\n");
+                    printf("\nA fila não possui nenhum elemento nessa posição\n");
                 pi = getElement(Q,n,&flag);
                 if(flag==PROCESS_SUCESS)
-                printf("\nO elemento na posição %d é %d\n",n,*pi);
+                    printf("\nO elemento na posição %d é %d\n",n,*pi);
+                break;
+            case 8:
+                if(len(Q, &flag) == 0){
+                    printf("Fila vazia!\n");
+                } else{
+                    printf("Fila:\n");
+                    printFila(Q, &flag);
+                }
                 break;
             default:
                 printf("Parece que você inseriu um número inválido :( , insira novamente\n");
