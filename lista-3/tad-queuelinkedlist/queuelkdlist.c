@@ -39,6 +39,30 @@ void lkdlist_addItem(LkdList* list, int value, int* flag){
     return;
 }
 
+void lkdlist_addItemLeft(LkdList* list, int value, int* flag){
+    Node* newNode = (Node*) malloc(sizeof(Node));
+
+    if(newNode == NULL){
+        *flag = LKDLIST_ERROR_CANT_ALLOCATE_NODE;
+        return;
+    }
+
+    newNode->data = value;
+    newNode->next = NULL;
+    
+    if(list->size == 0){
+        list->first = newNode;
+        list->last = newNode;
+    } else{
+        newNode->next = list->first;
+        list->first = newNode;
+    }
+
+    list->size++;
+    *flag = LKDLIST_SUCCESS;
+    return;
+}
+
 Node* lkdlist_getNode(LkdList* list, int idx, int *flag){
     // idx must be in [0, size]
     // if size == 0, throw error
@@ -125,8 +149,17 @@ void lkdlist_deleteList(LkdList* list){
     return;
 }
 
-void lkdlist_reverseList(LkdList* list){
-    return;
+LkdList* lkdlist_createReversedList(LkdList* old, int* flag){
+    LkdList* newList = lkdlist_createList(flag);
+    if(newList == NULL){
+        return NULL;
+    }
+    Node* currNode = old->first;
+    for(int i=0; i<old->size; i++){
+        lkdlist_addItemLeft(newList, currNode->data, flag);
+        currNode = currNode->next;
+    }
+    return newList;
 }
 
 int lkdlist_isOnList(LkdList* list, int value){

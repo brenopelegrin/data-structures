@@ -73,6 +73,12 @@ int lkdlist_getListSize(LkdList* list);
 /*  Retorna o tamanho da lista */
 
 int lkdlist_isEmpty(LkdList* list);
+/* Verifica se a lista está vazia.
+    Se vazia, retorna 1.
+    Se não vazia, retorna 0.
+*/
+
+LkdList* lkdlist_createReversedList(LkdList* old, int* flag);
 
 Queue* create(int *flag);
 /*Cria a fila*/

@@ -130,7 +130,7 @@ int main(int argc, char *argv[]){
                     printf("Fila:\n");
                     printFila(Q, &flag);
                 }
-                break;
+                break;        
             default:
                 printf("Parece que você inseriu um número inválido :( , insira novamente\n");
                 break;
