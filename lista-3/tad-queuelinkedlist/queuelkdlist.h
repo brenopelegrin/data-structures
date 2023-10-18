@@ -151,4 +151,5 @@ void printFila(Queue*, int*);
     Se sucesso, flag = 1.
 */
 
-
+void deleteFila(Queue*);
+/* Libera toda a memória utilizada pela fila */

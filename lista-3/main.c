@@ -15,7 +15,7 @@ void printOperacoes(){
     printf("8 - Imprimir elemento em determinado índice\n");
     printf("9 - Imprimir fila do primeiro ao último elemento\n");
     printf("10- Inverter fila\n");
-    printf("11- Limpar fila\n");
+    printf("11- Esvaziar fila\n");
     printf("0 - Sair\n");
     return;
 }
@@ -46,16 +46,15 @@ int main(int argc, char *argv[]){
                 printOperacoes();
                 break;
             case 0:
-                // Dá uma uma verificada nesse comando.
-                // Antes de sair do programa, deveria limpar toda a memória usada.
-                printf("Obrigado por utilizar nossos serviços :)\n");
+                deleteFila(Q);
+                printf("Obrigado por utilizar nossos serviços!\n");
                 break;
             case 1:
                 printf("Insira o valor que será colocado na fila:\n");
                 scanf("%d", &ele);
                 insert(Q, ele, &flag);
                 if(flag == PROCESS_SUCESS){
-                    printf("\nNúmero inserido com sucesso\n");
+                    printf("\nNúmero inserido com sucesso!\n");
                 }
                 else{
                     printf("Ocorreu um problema inesperado\n");
@@ -68,6 +67,11 @@ int main(int argc, char *argv[]){
                     scanf("%d",&ele);
                     insert(Q,ele,&flag);
                 }
+                if(flag==PROCESS_SUCESS){
+                    printf("\nNúmeros inseridos com sucesso!\n");
+                }else{
+                    printf("\nOcorreu um erro inesperado\n");
+                }
                 break;
             case 3:
                 if(len(Q,&flag)==0){
@@ -76,7 +80,7 @@ int main(int argc, char *argv[]){
                 }
                 pop(Q, &flag);
                 if(flag == PROCESS_SUCESS){
-                    printf("Elemento retirado com sucesso\n");
+                    printf("Elemento retirado com sucesso!\n");
                     break;
                 }
                 else{
@@ -88,7 +92,6 @@ int main(int argc, char *argv[]){
                     printf("Não é possível obter um elemento de uma fila vazia\n");
                     break;
                 }
-                printf("Capturando o primeiro elemento\n");
                 valor = pop(Q, &flag);
                 if(flag == PROCESS_SUCESS){
                     printf("Elemento capturado com sucesso, seu valor é %d\n",valor);
@@ -168,6 +171,7 @@ int main(int argc, char *argv[]){
             case 11:
                 // Dá uma verificada nessa limpeza aqui.
                 // O struct da fila também precisa ser liberado, sendo len > 0 ou não. 
+                //Anyway essa função não tá funcionando legal, as vezes ela não limpa
                 n=len(Q,&flag);
                 if(n==0){}
                 else{
@@ -181,7 +185,7 @@ int main(int argc, char *argv[]){
                 }
                 break;
             default:
-                printf("Parece que você inseriu um número inválido :( , insira novamente\n");
+                printf("Parece que você inseriu um número inválido.\n");
                 break;
         }
         printf("\n");

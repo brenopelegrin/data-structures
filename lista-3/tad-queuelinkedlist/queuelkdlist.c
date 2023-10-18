@@ -281,3 +281,8 @@ int* getElement(Queue *Q,int n,int *flag){
     return val;
 }
 
+void deleteFila(Queue *Q){
+    lkdlist_deleteList(Q->l);
+    free(Q);
+    return;
+}
