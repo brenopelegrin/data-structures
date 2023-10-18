@@ -1,0 +1,1 @@
+Search about DFS, SFS types of search in a lista
