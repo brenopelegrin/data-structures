@@ -4,9 +4,16 @@
 #define LKDLIST_ERROR_NOT_IMPLEMENTED 0
 #define LKDLIST_SUCCESS 1
 
-typedef struct node Node;
+typedef struct node {
+    int data;
+    struct node* next;
+} Node;
 
-typedef struct lkdlist LkdList;
+typedef struct lkdlist {
+    Node* first;
+    Node* last;
+    int size;
+} LkdList;
 
 LkdList* lkdlist_createList(int *flag);
 

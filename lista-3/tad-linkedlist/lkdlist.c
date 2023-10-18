@@ -2,17 +2,6 @@
 #include<stdlib.h>
 #include<stdio.h>
 
-typedef struct node {
-    int data;
-    struct node* next;
-} Node;
-
-typedef struct lkdlist {
-    Node* first;
-    Node* last;
-    int size;
-} LkdList;
-
 LkdList* lkdlist_createList(int *flag){
     LkdList* list = (LkdList*) malloc(sizeof(LkdList));
     if(list == NULL){
