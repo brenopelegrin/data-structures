@@ -4,15 +4,16 @@
 
 void printOperacoes(){
     printf("Manipulador de Fila\u00AE\n");
-    printf("---------------------\n");
+    printf("------------------------\n");
     printf("1 - Inserir elemento no final\n");
-    printf("2 - Deletar elemento no topo\n");
-    printf("3 - Obter elemento no topo (pop)\n");
-    printf("4 - Imprimir tamanho atual da fila\n");
-    printf("5 - Verificar se fila está vazia\n");
-    printf("6 - Verificar se elemento existe na fila\n");
-    printf("7 - Imprimir elemento em determinado índice\n");
-    printf("8 - Imprimir fila do primeiro ao último elemento\n");
+    printf("2 - Inserir multiplos elementos no final\n");
+    printf("3 - Deletar elemento no topo\n");
+    printf("4 - Obter elemento no topo (pop)\n");
+    printf("5 - Imprimir tamanho atual da fila\n");
+    printf("6 - Verificar se fila está vazia\n");
+    printf("7 - Verificar se elemento existe na fila\n");
+    printf("8 - Imprimir elemento em determinado índice\n");
+    printf("9 - Imprimir fila do primeiro ao último elemento\n");
     printf("0 - Sair\n");
     return;
 }
@@ -56,6 +57,14 @@ int main(int argc, char *argv[]){
                 printf("Ocorreu um problema inesperado\n");
                 break;
             case 2:
+                printf("Quantos números você deseja inserir? ");
+                scanf("%d",&n);
+                for(int i=0;i<n;i++){
+                    scanf("%d",&ele);
+                    insert(Q,ele,&flag);
+                }
+                break;
+            case 3:
                 if(len(Q,&flag)==0){
                     printf("Não é possível tirar um elemento de uma fila vazia\n");
                     break;
@@ -70,7 +79,7 @@ int main(int argc, char *argv[]){
                     printf("Ocorreu um problema inesperado\n");
                     break;
                 }
-            case 3:
+            case 4:
                 if(len(Q, &flag)==0){
                     printf("Não é possível obter um elemento de uma fila vazia\n");
                     break;
@@ -85,14 +94,14 @@ int main(int argc, char *argv[]){
                     printf("Ocorreu um problema inesperado\n");
                     break;
                 }
-            case 4:
+            case 5:
                 ele=len(Q,&flag);
                 if(flag==PROCESS_SUCESS)
                 printf("O tamanho da fila é: %d\n",ele);
                 else
                 printf("Ocorreu um problema inesperado\n");
                 break;
-            case 5:
+            case 6:
                 if((len(Q,&flag)) && flag==PROCESS_SUCESS){
                     printf("A fila não está vazia\n");
                 } else if(flag==PROCESS_SUCESS){
@@ -102,7 +111,7 @@ int main(int argc, char *argv[]){
                     printf("Ocorreu um problema inesperado\n");
                 }
                 break;
-            case 6:
+            case 7:
                 printf("Insira o elemento que você deseja descobrir se está na lista: ");
                 scanf("%d",&ele);
                 if((haveElement(Q,ele,&flag)) && (flag==PROCESS_SUCESS)){
@@ -114,7 +123,7 @@ int main(int argc, char *argv[]){
                     printf("\nOcorreu um erro inesperado\n");
                 }
                 break;
-            case 7:
+            case 8:
                 printf("Insira uma posição para encontrar o elemento: ");
                 scanf("%d",&n);
                 if(n>len(Q,&flag)-1)
@@ -123,7 +132,7 @@ int main(int argc, char *argv[]){
                 if(flag==PROCESS_SUCESS)
                     printf("\nO elemento na posição %d é %d\n",n,*pi);
                 break;
-            case 8:
+            case 9:
                 if(len(Q, &flag) == 0){
                     printf("Fila vazia!\n");
                 } else{
@@ -135,7 +144,7 @@ int main(int argc, char *argv[]){
                 printf("Parece que você inseriu um número inválido :( , insira novamente\n");
                 break;
         }
-
+        printf("\n");
     }
 
     return 0;
