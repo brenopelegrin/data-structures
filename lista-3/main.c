@@ -1,7 +1,7 @@
 /* Alunos participantes:
- * Breno Henrique Pelegrin da Silva - 
+ * Breno Henrique Pelegrin da Silva - 13687303
  * Pedro Martins Oliveira - 13696213
- * */
+ */
 
 #include<stdlib.h>
 #include<stdio.h>
@@ -10,18 +10,18 @@
 void printOperacoes(){
     printf("Manipulador de Fila de inteiros\u00AE\n");
     printf("------------------------\n");
-    printf("1 - Inserir elemento no final\n");
-    printf("2 - Inserir multiplos elementos no final\n");
-    printf("3 - Deletar elemento no topo\n");
-    printf("4 - Obter elemento no topo (pop)\n");
-    printf("5 - Imprimir tamanho atual da fila\n");
-    printf("6 - Verificar se fila está vazia\n");
-    printf("7 - Verificar se elemento existe na fila\n");
-    printf("8 - Imprimir elemento em determinado índice\n");
-    printf("9 - Imprimir fila do primeiro ao último elemento\n");
-    printf("10- Inverter fila\n");
-    printf("11- Esvaziar fila\n");
-    printf("0 - Sair\n");
+    printf("1   - Inserir elemento no final (push)\n");
+    printf("2   - Inserir multiplos elementos no final\n");
+    printf("3   - Deletar elemento no topo\n");
+    printf("4   - Obter elemento no topo (pop)\n");
+    printf("5   - Imprimir tamanho atual da fila\n");
+    printf("6   - Verificar se fila está vazia\n");
+    printf("7   - Verificar se elemento existe na fila\n");
+    printf("8   - Imprimir elemento em determinado índice\n");
+    printf("9   - Imprimir fila do primeiro ao último elemento\n");
+    printf("10  - Inverter fila\n");
+    printf("11  - Esvaziar fila\n");
+    printf("0   - Sair\n");
     return;
 }
 
@@ -43,7 +43,7 @@ int main(int argc, char *argv[]){
 
     printOperacoes();
     while(command != 0){
-        printf("Insira o número da operação que deseja realizar: (Insira -1 para imprimir as instruções novamente)\n");
+        printf("\nInsira o número da operação que deseja realizar: (Insira -1 para imprimir as instruções novamente)\n> ");
         scanf("%d", &command);
         printf("\n");
         switch (command){

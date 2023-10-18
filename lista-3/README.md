@@ -1,3 +1,13 @@
+# Lista 3
+
+Disciplina: Estruturas de Dados (2º semestre de 2023)
+
+Esse projeto implementa uma fila utilizando como backend uma lista encadeada (linked list).
+
+Alunos:
+    - Pedro Martins de Oliveira (13696213)
+    - Breno Henrique Pelegrin da Silva (13687303)
+
 Os códigos foram compilados e testados utilizando GCC GNU C/C++ Compiler rodando em um kernel linux.
 
 ## Instruções de Compilação
@@ -10,7 +20,7 @@ Para realizar a compilação basta executar o comando abaixo dentro do diretóri
 make clean && make
 ```
 
-Após isso serão gerados os arquivos de compilados, para rodar o programa basta executar:
+Após isso serão gerados os arquivos compilados em ./build. Para rodar o programa basta executar:
 
 ```bash
 ./build/main.o
