@@ -42,6 +42,7 @@ int main(int argc, char *argv[]){
         printf("Insira o número da operação que deseja realizar: (Insira -1 para imprimir as instruções novamente)\n");
         scanf("%d", &command);
         //Quando eu coloco um double ele fica doido, mas não sei exatamente como arrumar isso
+        /*colocando um command muito grande o scanf interpreta como -1, não é um grande problema mas né*/
         printf("\n");
         switch (command){
             case -1:
@@ -173,8 +174,6 @@ int main(int argc, char *argv[]){
                 break;
             default:
                 printf("Parece que você inseriu um número inválido :( , insira novamente\n");
-                /*colocando um command muito grande ele não printa essa mensagem, mas o programa não erro
-                ele interpreta como command=-1*/
                 break;
         }
         printf("\n");

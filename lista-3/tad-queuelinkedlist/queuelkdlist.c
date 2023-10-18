@@ -188,7 +188,7 @@ int lkdlist_isEmpty(LkdList* list){
     }
 }
 
-// Below we have the Queue implementation
+// Abaixo estão as implementações das funções da fila
 
 Queue* create(int *flag){
     Queue *Q=(Queue*)malloc(sizeof(Queue));
@@ -241,7 +241,6 @@ int haveElement(Queue *Q,int ele,int *flag){
         return 0;
     }
     p=lkdlist_getNode(Q->l,0,flag);
-    //Com a lista vazia ele não consegue pegar nem o primeiro node
     if(*flag!=LKDLIST_SUCCESS)
     return -1;
     *flag=PROCESS_SUCESS;
@@ -257,7 +256,7 @@ int haveElement(Queue *Q,int ele,int *flag){
 
 void invert(Queue *Q, int *flag){
     LkdList *L=lkdlist_createReversedList(Q->l,flag);
-    free(Q->l);
+    lkdlist_deleteList(Q->l);
     Q->l=L;
     return;
 }
