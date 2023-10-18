@@ -1,3 +1,8 @@
+/* Alunos participantes:
+ * Breno Henrique Pelegrin da Silva - 
+ * Pedro Martins Oliveira - 13696213
+ * */
+
 #include<stdlib.h>
 #include<stdio.h>
 #include"tad-queuelinkedlist/queuelkdlist.h"
