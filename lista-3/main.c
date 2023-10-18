@@ -3,7 +3,7 @@
 #include"tad-queuelinkedlist/queuelkdlist.h"
 
 void printOperacoes(){
-    printf("Manipulador de Fila\u00AE\n");
+    printf("Manipulador de Fila de inteiros\u00AE\n");
     printf("------------------------\n");
     printf("1 - Inserir elemento no final\n");
     printf("2 - Inserir multiplos elementos no final\n");
@@ -21,7 +21,6 @@ void printOperacoes(){
 }
 
 int main(int argc, char *argv[]){
-
     int command, flag;
     int ele, n, *pi;
 
@@ -41,24 +40,26 @@ int main(int argc, char *argv[]){
     while(command != 0){
         printf("Insira o número da operação que deseja realizar: (Insira -1 para imprimir as instruções novamente)\n");
         scanf("%d", &command);
-        //Quando eu coloco um double ele fica doido, mas não sei exatamente como arrumar isso
-        /*colocando um command muito grande o scanf interpreta como -1, não é um grande problema mas né*/
         printf("\n");
         switch (command){
             case -1:
                 printOperacoes();
                 break;
             case 0:
+                // Dá uma uma verificada nesse comando.
+                // Antes de sair do programa, deveria limpar toda a memória usada.
                 printf("Obrigado por utilizar nossos serviços :)\n");
                 break;
             case 1:
                 printf("Insira o valor que será colocado na fila:\n");
                 scanf("%d", &ele);
                 insert(Q, ele, &flag);
-                if(flag == PROCESS_SUCESS) 
-                printf("\nNúmero inserido com sucesso\n");
-                else
-                printf("Ocorreu um problema inesperado\n");
+                if(flag == PROCESS_SUCESS){
+                    printf("\nNúmero inserido com sucesso\n");
+                }
+                else{
+                    printf("Ocorreu um problema inesperado\n");
+                }
                 break;
             case 2:
                 printf("Quantos números você deseja inserir? ");
@@ -99,10 +100,12 @@ int main(int argc, char *argv[]){
                 }
             case 5:
                 ele=len(Q,&flag);
-                if(flag==PROCESS_SUCESS)
-                printf("O tamanho da fila é: %d\n",ele);
-                else
-                printf("Ocorreu um problema inesperado\n");
+                if(flag==PROCESS_SUCESS){
+                    printf("O tamanho da fila é: %d\n",ele);
+                }
+                else{
+                    printf("Ocorreu um problema inesperado\n");
+                }
                 break;
             case 6:
                 if((len(Q,&flag)) && flag==PROCESS_SUCESS){
@@ -117,7 +120,7 @@ int main(int argc, char *argv[]){
             case 7:
                 printf("Insira o elemento que você deseja descobrir se está na fila: ");
                 scanf("%d",&ele);
-                if((haveElement(Q,ele,&flag)) && (flag==PROCESS_SUCESS)){
+                if((haveElement(Q,ele,&flag)) && (flag == PROCESS_SUCESS)){
                     printf("\nO elemento %d está na fila\n",ele);
                 } else if(flag==PROCESS_SUCESS){
                     printf("\nO elemento %d não está na fila\n",ele);
@@ -129,22 +132,25 @@ int main(int argc, char *argv[]){
             case 8:
                 printf("Insira uma posição para encontrar o elemento: ");
                 scanf("%d",&n);
-                if(n>len(Q,&flag)-1){
+                if(n > len(Q, &flag)-1){
                     printf("\nA fila não possui nenhum elemento na posição %d\n",n);
                 } else{
-                pi = getElement(Q,n,&flag);
-                if(flag==PROCESS_SUCESS)
-                    printf("\nO elemento na posição %d é %d\n",n,*pi);
-                else if(n<0)
-                    printf("\nNão existem elementos em posição negativa\n");
-                else
-                    printf("\nOcorreu um erro inesperado\n");
+                    pi = getElement(Q,n,&flag);
+                    if(flag==PROCESS_SUCESS){
+                        printf("\nO elemento na posição %d é %d\n",n,*pi);
+                    }
+                    else if(n<0){
+                        printf("\nNão existem elementos em posição negativa\n");
+                    }
+                    else{
+                        printf("\nOcorreu um erro inesperado\n");
+                    }
                 }
                 break;
             case 9:
-                if((len(Q, &flag) == 0) && (flag==PROCESS_SUCESS)){
+                if((len(Q, &flag) == 0) && (flag == PROCESS_SUCESS)){
                     printf("Fila vazia!\n");
-                } else if(flag==PROCESS_SUCESS){
+                } else if(flag == PROCESS_SUCESS){
                     printf("Fila:\n");
                     printFila(Q, &flag);
                 } else{
@@ -153,17 +159,19 @@ int main(int argc, char *argv[]){
                 break;
             case 10:
                 invert(Q,&flag);
-                if(flag==PROCESS_SUCESS){
+                if(flag == PROCESS_SUCESS){
                     printf("Fila invertida com sucesso!\n");
                 } else{
                     printf("Ocorreu um erro inesperado");
                 }
                 break;
             case 11:
+                // Dá uma verificada nessa limpeza aqui.
+                // O struct da fila também precisa ser liberado, sendo len > 0 ou não. 
                 n=len(Q,&flag);
                 if(n==0){}
                 else{
-                for(int i=0;i<=len(Q,&flag);i++)
+                for(int i=0; i<=len(Q,&flag); i++)
                 pop(Q,&flag);
                 }
                 if(flag==PROCESS_SUCESS){

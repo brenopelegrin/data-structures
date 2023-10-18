@@ -188,7 +188,6 @@ int lkdlist_isEmpty(LkdList* list){
     }
 }
 
-<<<<<<< HEAD
 void lkdlist_setData(LkdList* list, int idx, int value, int *flag){
     Node* currNode = lkdlist_getNode(list, idx, flag);
     if(currNode == NULL){
@@ -199,9 +198,6 @@ void lkdlist_setData(LkdList* list, int idx, int value, int *flag){
 }
 
 // Below we have the Queue implementation
-=======
-// Abaixo estão as implementações das funções da fila
->>>>>>> 3e8cea8c2183296d1de78827ed51936712248f2b
 
 Queue* create(int *flag){
     Queue *Q=(Queue*)malloc(sizeof(Queue));
