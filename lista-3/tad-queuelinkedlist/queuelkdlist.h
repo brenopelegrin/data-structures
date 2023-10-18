@@ -1,6 +1,7 @@
-// Linked list definitions
+// Definições da lista encadeada
 #define LKDLIST_ERROR_CANT_ALLOCATE_LIST -1
 #define LKDLIST_ERROR_CANT_ALLOCATE_NODE -2
+
 #define LKDLIST_ERROR_INDEX_OUT_OF_BOUNDS -3
 /*  Nota: os índices da lista encadeada começam em 0
     e vão até size-1, seguindo a convenção do C.
@@ -9,12 +10,12 @@
 #define LKDLIST_ERROR_NOT_IMPLEMENTED 0
 #define LKDLIST_SUCCESS 1
 
-// Queue definitions
+// Definições da fila
 #define PROCESS_SUCESS LKDLIST_SUCCESS 
 #define CREATION_ERROR 2
 #define MEMORY_ALLOCATION_ERROR 3
 
-// Linked list structs
+// Structs da lista encadeada
 typedef struct node {
     int data;
     struct node* next;
@@ -26,11 +27,13 @@ typedef struct lkdlist {
     int size;
 } LkdList;
 
-// Queue struct
+// Structs da fila
 typedef struct {
     int created;
     LkdList *l;
 } Queue;
+
+// Declaração das funções da lista
 
 LkdList* lkdlist_createList(int *flag);
 /*  Cria uma lista encadeada.
@@ -107,33 +110,45 @@ void lkdlist_setData(LkdList* list, int idx, int value, int *flag);
     Caso falhe, a flag será um erro.
 */
 
+// Declaração das funções da fila
 Queue* create(int *flag);
-/*Cria a fila*/
-//Ok
+/* Cria a fila utilizando lista encadeada.
+    Se sucesso, flag = 1.
+*/
 
 void insert(Queue*, int, int*);
-/*Insere um elemento no fim da fila*/
-//Ok
+/* Insere um elemento no fim da fila.
+    Se sucesso, flag = 1.
+*/
 
 int pop(Queue*, int*);
-/*Retira o primeiro elemento da fila*/
-//Ok
+/* Retira o primeiro elemento da fila.
+    Se sucesso, flag = 1.
+*/
 
 int len(Queue*,int*);
-/*Retorna o tamanho da fila*/
-//Ok
+/* Retorna o tamanho da fila.
+    Se sucesso, flag = 1.
+*/
 
 int haveElement(Queue*,int,int*);
-/*Retorna se um elemento existe na fila*/
-//Ok
+/* Retorna se um elemento existe na fila.
+    Se sucesso, flag = 1.
+*/
 
 void invert(Queue*,int*);
-/*Inverte os elementos da fila*/
+/* Inverte os elementos da fila.
+    Se sucesso, flag = 1.
+*/
 
 int* getElement(Queue*,int,int*);
-/*Retorna o n-ésimo elemento da fila*/
-//Ok
+/* Retorna o n-ésimo elemento da fila.
+    Se sucesso, flag = 1.
+*/
 
 void printFila(Queue*, int*);
+/* Imprime todos os elementos da fila.
+    Se sucesso, flag = 1.
+*/
 
 

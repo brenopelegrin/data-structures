@@ -188,6 +188,7 @@ int lkdlist_isEmpty(LkdList* list){
     }
 }
 
+<<<<<<< HEAD
 void lkdlist_setData(LkdList* list, int idx, int value, int *flag){
     Node* currNode = lkdlist_getNode(list, idx, flag);
     if(currNode == NULL){
@@ -198,6 +199,9 @@ void lkdlist_setData(LkdList* list, int idx, int value, int *flag){
 }
 
 // Below we have the Queue implementation
+=======
+// Abaixo estão as implementações das funções da fila
+>>>>>>> 3e8cea8c2183296d1de78827ed51936712248f2b
 
 Queue* create(int *flag){
     Queue *Q=(Queue*)malloc(sizeof(Queue));
@@ -250,7 +254,6 @@ int haveElement(Queue *Q,int ele,int *flag){
         return 0;
     }
     p=lkdlist_getNode(Q->l,0,flag);
-    //Com a lista vazia ele não consegue pegar nem o primeiro node
     if(*flag!=LKDLIST_SUCCESS)
     return -1;
     *flag=PROCESS_SUCESS;
@@ -264,8 +267,11 @@ int haveElement(Queue *Q,int ele,int *flag){
 }
 
 
-void invert(Queue*, int*){
-
+void invert(Queue *Q, int *flag){
+    LkdList *L=lkdlist_createReversedList(Q->l,flag);
+    lkdlist_deleteList(Q->l);
+    Q->l=L;
+    return;
 }
 
 void printFila(Queue* Q, int* flag){
@@ -276,7 +282,6 @@ void printFila(Queue* Q, int* flag){
 
 int* getElement(Queue *Q,int n,int *flag){
     int* val = lkdlist_getData(Q->l,n,flag);
-    printf("getElement idx=%d, val=%d\n", n, *val);
     return val;
 }
 
