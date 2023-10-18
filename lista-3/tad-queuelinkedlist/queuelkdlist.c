@@ -270,7 +270,7 @@ void invert(Queue *Q, int *flag){
     return;
 }
 
-void printFila(Queue* Q, int* flag){
+void printQueue(Queue* Q, int* flag){
     lkdlist_printList(Q->l, flag);
     return;
 }
@@ -281,7 +281,14 @@ int* getElement(Queue *Q,int n,int *flag){
     return val;
 }
 
-void deleteFila(Queue *Q){
+void cleanQueue(Queue *Q,int *flag){
+    lkdlist_deleteList(Q->l);
+    LkdList *L=lkdlist_createList(flag);
+    Q->l=L;
+    return;
+}
+
+void deleteQueue(Queue *Q){
     lkdlist_deleteList(Q->l);
     free(Q);
     return;

@@ -146,10 +146,13 @@ int* getElement(Queue*,int,int*);
     Se sucesso, flag = 1.
 */
 
-void printFila(Queue*, int*);
+void printQueue(Queue*, int*);
 /* Imprime todos os elementos da fila.
     Se sucesso, flag = 1.
 */
 
-void deleteFila(Queue*);
+void cleanQueue(Queue*,int*);
+/* Elimina todos os elementos da fila, tornado ela vazia */
+
+void deleteQueue(Queue*);
 /* Libera toda a memória utilizada pela fila */

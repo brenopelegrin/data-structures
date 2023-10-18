@@ -46,7 +46,7 @@ int main(int argc, char *argv[]){
                 printOperacoes();
                 break;
             case 0:
-                deleteFila(Q);
+                deleteQueue(Q);
                 printf("Obrigado por utilizar nossos serviços!\n");
                 break;
             case 1:
@@ -155,7 +155,7 @@ int main(int argc, char *argv[]){
                     printf("Fila vazia!\n");
                 } else if(flag == PROCESS_SUCESS){
                     printf("Fila:\n");
-                    printFila(Q, &flag);
+                    printQueue(Q, &flag);
                 } else{
                     printf("Ocorreu um erro inesperado\n");
                 }
@@ -169,15 +169,7 @@ int main(int argc, char *argv[]){
                 }
                 break;
             case 11:
-                // Dá uma verificada nessa limpeza aqui.
-                // O struct da fila também precisa ser liberado, sendo len > 0 ou não. 
-                //Anyway essa função não tá funcionando legal, as vezes ela não limpa
-                n=len(Q,&flag);
-                if(n==0){}
-                else{
-                for(int i=0; i<=len(Q,&flag); i++)
-                pop(Q,&flag);
-                }
+                cleanQueue(Q,&flag);
                 if(flag==PROCESS_SUCESS){
                     printf("Fila limpa\n");
                 }else{
