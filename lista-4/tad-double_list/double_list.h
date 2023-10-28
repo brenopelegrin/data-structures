@@ -1,0 +1,3 @@
+//Definir os structs aqui
+
+
