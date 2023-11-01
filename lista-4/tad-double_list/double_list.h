@@ -1,16 +1,19 @@
-/*tem que revisar isso depois porque eu não sei mexer com string
- então altas chances de eu ter errado
-*/
+#define PROCESS_SUCESS 1
+#define MEMORY_ALLOCATION_ERROR 2
 
-typedef struct no{
-
-} No;
+typedef struct node{
+    char *name; //Com certeza vai ter que mudar isso
+    struct node* next;
+    struct node* last;
+} Node;
 
 typedef struct dlist{
-
+    Node *first;
+    Node *last;
+    int size;
 } dList;
 
-dList create(int *flag);
+dList* create(int *flag);
 /*Cria a lista*/
 
 void insert(dList *list,char *name[],int pos,int *flag);
