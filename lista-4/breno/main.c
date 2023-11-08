@@ -25,7 +25,7 @@ char* readString(){
     unsigned int size = 0;
     unsigned int charBuffer = 0;
     getchar(); // this avoids past \n from choice
-    printf("> Digite a string: ");
+    printf("> Digite a string a ser inserida: ");
     while ((charBuffer=getchar()) != EOF && charBuffer != '\n') {
         if (i + 1 >= size)
         {
@@ -56,6 +56,7 @@ void checkError(int* flag){
 int main(int argc, char* argv[]){
     int flag = 0;
     int choice = 0;
+    char* string;
     DoubleLkdlist* list = dlkdlist_create(&flag);
 
     printf("Bem-vindo(a) ao TAD de lista duplamente encadeada.\n");
@@ -84,12 +85,20 @@ int main(int argc, char* argv[]){
                 checkError(&flag);
                 break;
             case 2:
-                char* string = readString();
-                printf("%s", string);
-                free(string);
+                int index = -1;
+                printf("> Digite o índice: ");
+                scanf("%d", &index);
+
+                string = readString();
+                printf("String lida: %s\n", string);
+
+                dlklist_insertByIndex(list, index, string, &flag);
                 checkError(&flag);
                 break;
             case 3:
+                string = readString();
+                printf("String lida: %s\n", string);
+                dlkdlist_insertOrdenated(list, string, &flag);
                 checkError(&flag);
                 break;
             default:

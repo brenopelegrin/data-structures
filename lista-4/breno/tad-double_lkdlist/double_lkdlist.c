@@ -4,7 +4,7 @@
 #include <string.h>
 #include <ctype.h>
 
-Node* dlkdlist_createNode(int* flag){
+Node* dlkdlist_createNode(char* data, int* flag){
     Node* newNode = (Node*) malloc(sizeof(Node));
     if(newNode == NULL){
         *flag = DLKDLIST_ERROR_CANT_ALLOCATE_NODE;
@@ -12,6 +12,7 @@ Node* dlkdlist_createNode(int* flag){
     }
     newNode->prev=NULL;
     newNode->next=NULL;
+    newNode->data=data;
     *flag = DLKDLIST_SUCCESS;
     return newNode;
 }
@@ -60,7 +61,7 @@ Node* dlkdlist_getNodeByIndex(DoubleLkdlist* list, int idx, int* flag){
     return NULL;
 }
 
-void dlklist_insertByIndex(DoubleLkdlist* list, int idx, int* flag){
+void dlklist_insertByIndex(DoubleLkdlist* list, int idx, char* data, int* flag){
     //ps: index starts at 1
     //idx = 1 is the first element
     //idx = length is the last element
@@ -77,13 +78,55 @@ void dlklist_insertByIndex(DoubleLkdlist* list, int idx, int* flag){
         *flag = DLKDLIST_ERROR_INDEX_OUT_OF_BOUNDS;
         return;
     }
+    else if(list->length == 0){
+        Node* newNode = dlkdlist_createNode(data, flag);
+        if(newNode == NULL){
+            return;
+        }
+        list->first = newNode;
+        list->last = newNode;
+        list->length++;
+        *flag = DLKDLIST_SUCCESS;
+        return;
+    }
     else if(idx >= 1 && idx <= list->length){
         // insert after the previous node on the idx
         // TODO: implement
+        Node* newNode = dlkdlist_createNode(data, flag);
+        if(newNode == NULL){
+            return;
+        }
+        Node* currNode = dlkdlist_getNodeByIndex(list, idx, flag);
+        if(currNode == NULL){
+            return;
+        }
+        if(idx == 1){
+            newNode->next = list->first;
+            list->first = newNode;
+            newNode->next->prev = newNode;
+            list->length++;
+            *flag = DLKDLIST_SUCCESS;
+            return;
+        }
+        currNode->next->prev = newNode;
+        newNode->next = currNode->next;
+        currNode->next = newNode;
+        newNode->prev = currNode;
+        list->length++;
+        *flag = DLKDLIST_SUCCESS;
+        return;
     }
     else if(idx > list->length){
-        // insert after end of list
-        // TODO: implement
+        Node* newNode = dlkdlist_createNode(data, flag);
+        if(newNode == NULL){
+            return;
+        }
+        list->last->next = newNode;
+        newNode->prev = list->last;
+        list->last = newNode;
+        list->length++;
+        *flag = DLKDLIST_SUCCESS;
+        return;
     }
     return;
 }
@@ -113,6 +156,7 @@ void dlkdlist_removeByIndex(DoubleLkdlist* list, int idx, int* flag){
     }
     currentNode->prev->next = currentNode->next;
     currentNode->next->prev = currentNode->prev;
+    free(currentNode->data);
     free(currentNode);
     *flag = DLKDLIST_SUCCESS;
     return;
@@ -165,6 +209,7 @@ void dlkdlist_printFlag(int* flag){
             break;
         case DLKDLIST_ERROR_INSERTION_TYPE_NOT_ALLOWED:
             printf("[!] ERRO: outro método de inserção para a lista já foi definido, não é possível utilizar esse método.");
+            break;
         default:
             printf("[?] DESCONHECIDO: código de flag desconhecido.");
             break;
@@ -177,6 +222,7 @@ void dlkdlist_destroyList(DoubleLkdlist* list, int* flag){
     Node* temp = currNode;
     for(int i=0; i<list->length; i++){
         temp = currNode->next;
+        free(currNode->data);
         free(currNode);
         currNode = temp;
     }

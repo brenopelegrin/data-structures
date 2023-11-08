@@ -43,9 +43,9 @@ typedef struct double_lkdlist{
     int length;
 } DoubleLkdlist;
 
-Node* dlkdlist_createNode(int* flag);
+Node* dlkdlist_createNode(char* data, int* flag);
 DoubleLkdlist* dlkdlist_create(int* flag);
-void dlklist_insertByIndex(DoubleLkdlist* list, int idx, int* flag);
+void dlklist_insertByIndex(DoubleLkdlist* list, int idx, char* data, int* flag);
 void dlkdlist_ordenateAlpha(DoubleLkdlist* list, int* flag);
 void dlkdlist_insertOrdenated(DoubleLkdlist* list, char* data, int* flag);
 void dlkdlist_removeByIndex(DoubleLkdlist* list, int idx, int* flag);
