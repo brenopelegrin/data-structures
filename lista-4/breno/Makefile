@@ -5,11 +5,11 @@ TARGET = doublelinkedlist
 
 default: main
 
-main: tad-double_lkdlist
+main: double_lkdlist
 	@echo "\n> compiling main\n"
 	$(CC) $(CFLAGS) -I./tad-double_lkdlist -o build/main.o main.c -lm ./tad-double_lkdlist/build/double_lkdlist.o
 
-tad-double_lkdlist:
+double_lkdlist:
 	@echo "\n> compiling tad-double_lkdlist\n"
 	$(CC) $(CFLAGS) -c -o tad-double_lkdlist/build/double_lkdlist.o ./tad-double_lkdlist/double_lkdlist.c
 	

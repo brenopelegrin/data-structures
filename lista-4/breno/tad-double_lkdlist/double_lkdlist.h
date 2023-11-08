@@ -4,13 +4,17 @@
 
 // Error codes definitions
 #define DLKDLIST_SUCCESS 1
-#define DLKDLIST_ERROR_CANT_ALLOCATE_NODE -1
-#define DLKDLIST_ERROR_CANT_ALLOCATE_LIST -2
-#define DLKDLIST_ERROR_INDEX_OUT_OF_BOUNDS -3
+#define DLKDLIST_ERROR_CANT_ALLOCATE_NODE -2
+#define DLKDLIST_ERROR_CANT_ALLOCATE_LIST -3
+#define DLKDLIST_ERROR_INDEX_OUT_OF_BOUNDS -4
+#define DLKDLIST_ERROR_INSERTION_TYPE_NOT_ALLOWED -5
 
 // Boolean definitions
 #define DLKDLIST_BOOL_TRUE 1
 #define DLKDLIST_BOOL_FALSE 0
+
+// Miscelaneous definitions
+#define DLKDLIST_UNDEFINED -1
 
 /*
     Double Linked List Node Struct
@@ -26,11 +30,16 @@ typedef struct node{
     Double Linked List Struct
     Here, the 'ordenated' flag and the 'length' counterallows to 
     optimize insertions and deletions.
+
+    indexInsertion flag selects between index insertion or ordenated
+    insertion. If true, insert by index, if false, by ordenated.
+    Defaults to DLKDLIST_UNDEFINED.
 */
 typedef struct double_lkdlist{
     Node* first;
     Node* last;
     int ordenated;
+    int indexInsertion;
     int length;
 } DoubleLkdlist;
 
