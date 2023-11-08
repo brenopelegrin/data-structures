@@ -2,12 +2,6 @@
 #include<stdio.h>
 #include"tad-double_list/double_list.h"
 
-//Testar mais alguns casos
-//Ajustar mensagens de erro e de sucesso
-//Talvez colocar mais algumas operações
-    //Queria colocar operações pra capitalizar e deixar lower ou uper, mas não sei se é muito trampo
-//Tive alguns problemas com a função str_isUpercase com os casos Zé e MANé onde ela retornou TRUE
-
 void recebe_nome(String *S);
 /*Recebe do terminal uma string para S*/
 
@@ -19,6 +13,9 @@ void recebe_op(int *op);
 
 void sucess_message(void);
 /*Imprime uma mensagem de sucesso*/
+
+void error_message(int flag);
+/*Imprime uma mensagem de erro*/
 
 int main(){
     int op,running,flag;
@@ -44,6 +41,8 @@ int main(){
         break;
     case 0:
         running = 0;
+        free_list(l,&flag);
+        free(S);
         break;
     case 1:
         printf("Digite o nome que deseja inserir:\n");
@@ -51,9 +50,16 @@ int main(){
         printf("\nDigite a posição em que deseja inserir: ");
         scanf("%d",&pos);
         getchar();
+        while(pos<-1){
+            printf("Você inseriu uma posição inválida, insira novamente.\n");
+            scanf("%d",&pos);
+            getchar();
+        }
         insert(l,S,pos,&flag);
         if(flag==PROCESS_SUCESS){
             sucess_message();
+        } else{
+            error_message(flag);
         }
         break;
     case 2:
@@ -87,38 +93,68 @@ int main(){
             } else{
                 printf("O nome não está na lista\n");
             }
+        } else{
+            error_message(flag);
         }
         break;
     case 4:
         printf("Insira o nome que deseja remover:\n");
         recebe_nome(S);
-        remove_name(l,S,&flag);
-        if(flag==PROCESS_SUCESS){
-            sucess_message();
+        if(exist(l,S,&flag)){
+            remove_name(l,S,&flag);
+            if(flag==PROCESS_SUCESS){
+                sucess_message();
+            } else{
+                error_message(flag);
+            }
+        } else{
+            printf("O nome não existe na lista, portanto não é possível retira-lo\n");
         }
         break;
     case 5:
+        if(isEmpty(l,&flag)){
+            printf("A lista está vazia, não existe nada para ordenar\n");
+            break;
+        }
         l = sorted_list(l,&flag);
         if(flag==PROCESS_SUCESS){
             sucess_message();
+        } else{
+            error_message(flag);
         }
         break;
     case 6:
+        if(isEmpty(l,&flag)){
+            printf("A lista está vazia, não é possível ver se ela está ordenada\n");
+            break;
+        }
         state = isSorted(l,&flag);
-        if(state){
-            printf("A lista está ordenada\n");
+        if(flag==PROCESS_SUCESS){
+            if(state){
+                printf("A lista está ordenada\n");
+            } else{
+                printf("A lista não está ordenada\n");
+            }
         } else{
-            printf("A lista não está ordenada\n");
+            error_message(flag);
         }
         break;
     case 7:
-        printAll(l,&flag);
+        if(isEmpty(l,&flag)){
+            printf("Não existe nada para imprimir!\n");
+        } else{
+            printAll(l,&flag);
+        }
         break;
     case 8:
-        printAll_inverted(l,&flag);
+        if(isEmpty(l,&flag)){
+            printf("Não existe nada para imprimir!\n");
+        } else{
+            printAll_inverted(l,&flag);
+        }
         break;
     case 9:
-        printf("A lista possui %d elementos\n",l->size);
+        printf("A lista possui %d elemento(s)\n",l->size);
         break;
     default:
         printf("Parece que você inseriu um número inválido, tente novamente!\n");
@@ -145,7 +181,7 @@ void print_tarefas(void){
 }
 
 void recebe_nome(String *S){
-    fgets(S->str,MAX_SIZE_NAME*sizeof(char),stdin);
+    fgets(S->str,MAX_SIZE_NAME,stdin);
     return;
 }
 
@@ -158,5 +194,20 @@ void recebe_op(int *op){
 
 void sucess_message(void){
     printf("Operação realizada com sucesso\n");
+    return;
+}
+
+void error_message(int flag){
+    switch (flag) {
+    case CREATION_ERROR:
+        printf("Ocorreu um erro de criação, algum elemento não foi inicializado propriamente");
+        break;
+    case MEMORY_ALLOCATION_ERROR:
+        printf("Ocorreu um erro de alocação de memória, é possível que não exista memória o bastante ou a alocação foi feita incorretamente\n");        
+        break;
+    default:
+        printf("Ocorreu um erro inesperado\n");
+        break;
+    }
     return;
 }

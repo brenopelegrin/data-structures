@@ -122,6 +122,8 @@ N
 Encerrando operacação
 ```
 
+Se for digitado qualquer outro elemento além de `N` e `S` a operação também é finalizada.
+
 ### Verificar se nome existe
 
 O usuário insere um nome e o programa verifica se esse nome já está presenta na lista:
@@ -167,22 +169,161 @@ Operação realizada com sucesso
 Caso o nome não esteja na lista o programa exibe um aviso:
 
 ```bash
-Falta fazer esse aviso
+Digite o número associado à operação desejada (Digite -1 para ver as operações novamente): 4
+
+Insira o nome que deseja remover:
+Breno 
+O nome não existe na lista, portanto não é possível retira-lo
 ```
 
 ### Ordenar lista
 
-Ordena os elementos da lista em ordem alfabética, maiúsculas e minúsculas possuem o mesmo valor nessa ordenação.
+Ordena os elementos da lista em ordem alfabética, maiúsculas e minúsculas possuem o mesmo valor nessa ordenação, portanto não é necessário se preocupar com elas.
+
+```bash
+Digite o número associado à operação desejada (Digite -1 para ver as operações novamente): 7
+
+pedRo
+StevE
+BrEnO
+
+Digite o número associado à operação desejada (Digite -1 para ver as operações novamente): 5
+
+Operação realizada com sucesso
+
+Digite o número associado à operação desejada (Digite -1 para ver as operações novamente): 7
+
+BrEnO
+pedRo
+StevE
+```
+
+Caso a lista esteja vazia o programa exibe uma mensagem:
+
+```bash
+Digite o número associado à operação desejada (Digite -1 para ver as operações novamente): 5
+
+A lista está vazia, não existe nada para ordenar
+```
 
 ### Verificar se a lista está ordenada
 
+A operação em questão exibe uma mensagem indicando se a lista está ou não ordenada
+
+```bash
+Digite o número associado à operação desejada (Digite -1 para ver as operações novamente): 7
+
+Pedro
+Breno
+
+Digite o número associado à operação desejada (Digite -1 para ver as operações novamente): 6
+
+A lista não está ordenada
+```
+
+Ou para o caso de uma lista ordenada:
+
+```bash
+Digite o número associado à operação desejada (Digite -1 para ver as operações novamente): 6
+
+A lista está ordenada
+```
+
+Existe ainda a possibilidade de a lista estar vazia, nesse caso como não é possível averiguar ordenação o programa retorna uma mensagem:
+
+```bash
+Digite o número associado à operação desejada (Digite -1 para ver as operações novamente): 6 
+
+A lista está vazia, não é possível ver se ela está ordenada
+```
+
 ### Imprimir elementos
+
+A operação de imprimir elementos mostra todos os elementos presentes na lista:
+
+```bash
+Digite o número associado à operação desejada (Digite -1 para ver as operações novamente): 2
+
+Digite o nome que deseja inserir:
+BRENO
+Operação realizada com sucesso
+
+Digite o número associado à operação desejada (Digite -1 para ver as operações novamente): 2
+
+Digite o nome que deseja inserir:
+PEDRO
+Operação realizada com sucesso
+
+Digite o número associado à operação desejada (Digite -1 para ver as operações novamente): 7
+
+BRENO
+PEDRO
+```
+
+Caso a lista não possua nenhum elemento a operação mostra uma mensagem:
+
+```bash
+Digite o número associado à operação desejada (Digite -1 para ver as operações novamente): 7
+
+Não existe nada para imprimir!
+```
 
 ### Imprimir elementos em ordem invertida
 
+Assim como a anterior, essa operação também imprime os elementos da lista, porém em ordem invertida.
+
+```bash
+Digite o número associado à operação desejada (Digite -1 para ver as operações novamente): 2
+
+Digite o nome que deseja inserir:
+Breno 
+Operação realizada com sucesso
+
+Digite o número associado à operação desejada (Digite -1 para ver as operações novamente): 2
+
+Digite o nome que deseja inserir:
+Pedro
+Operação realizada com sucesso
+
+Digite o número associado à operação desejada (Digite -1 para ver as operações novamente): 8
+
+Pedro
+Breno
+```
+
+Repare como no exemplo acima os elementos foram colocados ao contrário na ordem alfabética, pois foram inseridos ordenadamente.
+
+Essa operação é muito facilitada devido à implementação de uma lista duplamente encadeada, onde temos a informação do nó anterior a um nó qualquer.
+
+Novamente, para o caso da lista vazia o programa exibe uma mensagem:
+
+```bash
+Digite o número associado à operação desejada (Digite -1 para ver as operações novamente): 8
+
+Não existe nada para imprimir!
+```
+
 ### Imprimir o tamanho da lista
 
+Essa operação apenas imprime a quantidade de elementos na lista.
 
+```bash
+Digite o número associado à operação desejada (Digite -1 para ver as operações novamente): 2
+
+Digite o nome que deseja inserir:
+Pedro
+Operação realizada com sucesso
+
+Digite o número associado à operação desejada (Digite -1 para ver as operações novamente): 2
+
+Digite o nome que deseja inserir:
+Breno
+Operação realizada com sucesso
+
+Digite o número associado à operação desejada (Digite -1 para ver as operações novamente): 9
+
+A lista possui 2 elemento(s)
+```
 
 ### Imprimir o guia de operações novamente
 
@@ -198,6 +339,8 @@ Digite o número associado à operação desejada (Digite -1 para ver as operaç
 Obrigado por utilizar nossos serviços!
 ```
 
+Não se preocupe, o programa limpa a memória utilizada antes de sair.
+
 ### Operações Inválidas
 
 Se for inserido qualquer número que não esteja associado a nenhuma operação o programa exibe uma mensagem de erro e pede que o usuário digite a operação desejada novamente.
@@ -207,3 +350,15 @@ Digite o número associado à operação desejada (Digite -1 para ver as operaç
 
 Parece que você inseriu um número inválido, tente novamente!
 ```
+
+# Alguns Detalhes
+
+O programa manipula os nomes como uma cadeia de caracteres, para poupar memória é alocado um espaço de 30 caracteres para os nomes (sendo esse um espaço suficiente para a maior parte dos nomes).
+
+Porém, caso o usuário precise aumentar esse tamanho ele deve ir ao arquivo `/tad-double_list/double_list.h` e alterar o valor de `MAX_SIZE_NAME`.
+
+```C
+#define MAX_SIZE_NAME <insira o tamanho desejado aqui!>
+```
+
+Porém cuidado! Colocar valores muito grandes faz com que o programa precise de muita memória, enquanto que valores muito pequenos fazem com que os nomes excedam o limite.

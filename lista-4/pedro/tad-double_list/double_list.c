@@ -75,6 +75,11 @@ void sorted_insert(dList *list,String *name,int *flag){
         return;
     }
 
+    if(isEmpty(list,flag)){
+        insert(list,name,0,flag);
+        return;
+    }
+
     if(isSorted(list,flag)==0){
         *flag = PROCESS_ERROR;
         return;
@@ -212,6 +217,11 @@ int isSorted(dList *list,int *flag){
         return -1;
     }
 
+    if(isEmpty(list,flag)){
+        *flag=PROCESS_ERROR;
+        return -1;
+    }
+
     String *val=str_create(MAX_SIZE_NAME,flag);
 
     state=1;
@@ -264,5 +274,17 @@ void printAll_inverted(dList *list,int *flag){
         p=p->last;
     }
     *flag = PROCESS_SUCESS;
+    return;
+}
+
+void free_list(dList *list,int *flag){
+    int i,aux;
+
+    aux = list->size;
+
+    for(i=0;i<aux;i++){
+        remove_name(list,list->first->name,flag);
+    }
+    free(list);
     return;
 }

@@ -21,37 +21,95 @@ typedef struct dlist{
 } dList;
 
 dList* create(int *flag);
-/*Cria a lista*/
+/*Cria a lista
+Parâmetros:
+    int *flag: sinal
+Retorna:
+    Retorna um ponteiro para a lista
+*/
 
 void insert(dList *list,String *name,int pos,int *flag);
-/*Insere um nome em determinada posição da lista*/
+/*Insere um nome em determinada posição da lista
+Parâmetros:
+    dList *list: lista onde será inserido o elemento
+    String *name: nome que será inserido
+    int pos: a posição onde será inserido o nome
+    int *flag: sinal
+*/
 
 void sorted_insert(dList *list,String *name,int *flag);
-/*Insere um nome na lista de forma alfabética*/
+/*Insere um nome na lista de forma alfabética
+Parâmetros:
+    dList *list: lista ondes será inserido o elemento
+    String *name: nome que será inserido
+    int *flag: sinal
+*/
 
 dList* sorted_list(dList *list,int *flag);
-/*Ordena a lista em ordem alfabética*/
+/*Ordena a lista em ordem alfabética
+Parâmetros:
+    dList *list: lista que será ordenada
+    int *flag: sinal
+Retorna:
+    Lista ordenada
+*/
 
 void remove_name(dList *list,String *name,int *flag);
-/*Retira um determinado elemento da lista*/
+/*Retira um determinado elemento da lista
+Parâmetros:
+    dList *list: lista de onde será tirado o elemento
+    String *name: nome que será retirado
+    int *flag: sinal
+*/
 
 int exist(dList *list,String *name,int *flag);
-/*Retorna 1 se o elemento existir na lista
-  Retorna 0 caso contrário 
+/*Mostra se um elemento existe ou não na lista
+Parâmetros:
+    dList *list: lista de onde o elemento será buscado
+    String *name: nome que será procurado
+    int *flag: sinal
+Retorna:
+    Retorna 1 se o elemento existir
+    Retorna 0 se o elemento não existir
 */
 
 int isEmpty(dList *list,int *flag);
-/*Retorna 1 se a lista estiver vazia
-  Retorna 0 caso contrário
+/*Verifica se a lista está vazia
+Parâmetros:
+    dList *list: lista que será analisada
+    int *flag: sinal
+Retorna:
+    Retorna 1 se a lista estiver vazia
+    Retorna 0 se a lista não estiver vazia
 */
 
 int isSorted(dList *list,int *flag);
-/*Retorna 1 caso a lista esteja em ordem alfabética
-  Retorna 0 caso contrário
+/*Verifica se a lista está ordenada
+Parâmetros:
+    dList *list: lista que será analisada
+    int *flag: sinal
+Retorna:
+    Retorna 1 se a lista estiver ordenada
+    Retorna 0 se s lista não estiver ordenada
 */
 
 void printAll(dList *list,int *flag);
-/*Imprime todos os elementos da lista*/
+/*Imprime todos os elementos da lista
+Parâmetros:
+    dList *list: lista que será utilizada
+    int *flag: sinal
+*/
 
 void printAll_inverted(dList *list,int *flag);
-/*Imprime todos os elementos da lista ao contrário*/
+/*Imprime todos os elementos da lista ao contrário
+Parâmetros:
+    dList *list: lista que será utilizada
+    int *flag: sinal
+*/
+
+void free_list(dList *list,int *flag);
+/*Libera a memória utilizada pela lista
+Parâmetros:
+  dList *list: lista que será limpa
+  int *flag: sinal
+*/
