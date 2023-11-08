@@ -149,7 +149,7 @@ void dlkdlist_printAll(DoubleLkdlist* list, int* flag){
     return;
 }
 
-void dlkdlist_printFlag(DoubleLkdlist* list, int* flag){
+void dlkdlist_printFlag(int* flag){
     switch(*flag){
         case DLKDLIST_SUCCESS:
             printf("[OK] operação realizada com sucesso.");
@@ -158,7 +158,7 @@ void dlkdlist_printFlag(DoubleLkdlist* list, int* flag){
             printf("[!] ERRO: não foi possível alocar memória para criar o Node.");
             break;
         case DLKDLIST_ERROR_CANT_ALLOCATE_LIST:
-            printf("[!] ERROR: não foi possível alocar memória para criar a DoubleLkdlist.");
+            printf("[!] ERRO: não foi possível alocar memória para criar a DoubleLkdlist.");
             break;
         case DLKDLIST_ERROR_INDEX_OUT_OF_BOUNDS:
             printf("[!] ERRO: o índice está fora dos limites, ou seja, menor que 1 ou maior que o comprimento da lista.");

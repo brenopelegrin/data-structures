@@ -54,3 +54,4 @@ int dlkdlist_isEmpty(DoubleLkdlist* list, int* flag);
 void dlkdlist_printAll(DoubleLkdlist* list, int* flag);
 void dlkdlist_printError(DoubleLkdlist* list, int* flag);
 void dlkdlist_destroyList(DoubleLkdlist* list, int* flag);
+void dlkdlist_printFlag(int* flag);

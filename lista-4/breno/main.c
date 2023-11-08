@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define STRING_START_SIZE 10
+
 void printChoices(){
     printf("\nEscolha uma das opções:\n");
     printf("\nOpção\tDescrição\n");
@@ -14,7 +16,40 @@ void printChoices(){
     printf("4\tRemover elemento por índice\n");
     printf("5\tVerificar se a lista está vazia\n");
     printf("6\tVerificar se um elemento está na lista\n");
-    printf("\n> Opção escolhida: ");
+    return;
+}
+
+char* readString(){
+    char* string = NULL;
+    int i = 0;
+    unsigned int size = 0;
+    unsigned int charBuffer = 0;
+    getchar(); // this avoids past \n from choice
+    printf("> Digite a string: ");
+    while ((charBuffer=getchar()) != EOF && charBuffer != '\n') {
+        if (i + 1 >= size)
+        {
+            size = size * 2 + 1;
+            //Reallocates to fit string in memory
+            string = realloc(string, sizeof(char)*size);
+            if(!string){
+                //Realloc failed
+                printf("Erro: memória indisponível para realloc");
+                exit(EXIT_FAILURE);
+            }
+        }
+        string[i] = charBuffer;
+        i++;
+    }
+    return string;
+}
+
+void checkError(int* flag){
+    if(*flag != DLKDLIST_SUCCESS){
+        printf("\n");
+        dlkdlist_printFlag(flag);
+        printf("\n");
+    }
     return;
 }
 
@@ -32,22 +67,34 @@ int main(int argc, char* argv[]){
     printf("---------------------------------------------------\n");
     printChoices();
     while(choice != -1){
+        printf("\n> Escolha uma opção: ");
         scanf("%d", &choice);
+        printf("\n");
         switch(choice){
             case -1:
                 dlkdlist_destroyList(list, &flag);
+                checkError(&flag);
                 break;
             case 0:
                 printChoices();
                 break;
             case 1:
+                printf("Lista impressa:\n");
+                dlkdlist_printAll(list, &flag);
+                checkError(&flag);
                 break;
             case 2:
+                char* string = readString();
+                printf("%s", string);
+                free(string);
+                checkError(&flag);
                 break;
             case 3:
+                checkError(&flag);
                 break;
             default:
-                printf("ERRO: opção inválida!\n");
+                printf("\n[!] ERRO: opção inválida!");
+                printChoices();
                 break;
         }
     }
