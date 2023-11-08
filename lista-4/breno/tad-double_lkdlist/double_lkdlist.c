@@ -131,9 +131,55 @@ void dlklist_insertByIndex(DoubleLkdlist* list, int idx, char* data, int* flag){
     return;
 }
 
-void dlkdlist_ordenateAlpha(DoubleLkdlist* list, int* flag){
-    // TODO: implement
-    return;
+char* toLower(char* s) {
+  for(char * p= s; *p; p++){
+    *p=tolower(*p);
+  }
+  return s;
+}
+
+int str_comp(char *A, char *B){
+    int i, state, lenA, lenB;
+    lenA = strlen(A);
+    lenB = strlen(B);
+
+    if(A == NULL || B == NULL){
+        return;
+    }
+
+    if(lenA < lenB){
+        state = 1;
+        for(i=0;i<lenA;i++){
+            if(A[i] > B[i]){
+                state = -1;
+                break;
+            } else if(A[i] < B[i]){
+                break;
+            }
+        }
+    } else if(lenA>lenB){
+        state = -1;
+        for(i=0;i<lenB;i++){
+            if(A[i]>B[i]){
+                break;
+            } else if(A[i]<B[i]){
+                state = 1;
+                break;
+            }
+        }
+    } else{
+        state = 0;
+        for(i=0;i<lenB;i++){
+            if(A[i]>B[i]){
+                state = -1;
+                break;
+            } else if(A[i]<B[i]){
+                state = 1;
+                break;
+            }
+        }
+    }
+    return state;
 }
 
 void dlkdlist_insertOrdenated(DoubleLkdlist* list, char* data, int* flag){
@@ -145,6 +191,35 @@ void dlkdlist_insertOrdenated(DoubleLkdlist* list, char* data, int* flag){
     }
     else if(list->indexInsertion == DLKDLIST_UNDEFINED){
         list->indexInsertion = DLKDLIST_BOOL_FALSE;
+    }
+    
+    Node* newNode = dlkdlist_createNode(data, flag);
+    if(newNode == NULL){
+        return;
+    }
+    if(list->length == 0){
+        newNode->data = toLower(newNode->data);
+        list->first = newNode;
+        list->last = newNode;
+        list->length++;
+        *flag = DLKDLIST_SUCCESS;
+        return;
+    }
+
+    for(int i=0; i<list->length; i++){
+        Node* currNode = list->first;
+        int state = str_comp(toLower(data), toLower(currNode->data));
+        if(state == 0){
+            dlkdlist_insertByIndex(list, i, flag);
+        }
+        else if (state == 1){
+            dlkdlist_insertByIndex(list, i, flag);
+        }
+        else if (state == -1){
+            // TODO implement if current string is alphabetically inferior to currNode
+            return;
+        }
+        currNode = currNode->next;
     }
     return;
 }

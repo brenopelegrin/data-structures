@@ -67,6 +67,7 @@ int main(int argc, char* argv[]){
     printf("- Na ordenação, maíusculas são ignoradas.\n");
     printf("- Após selecionar um tipo de ordenção, você\n  deverá usá-la até o final.\n");
     printf("- Os índices começam em 1.\n");
+    printf("- Ao escolher inserção ordenada, maiúsculas serão ignoradas.\n");
     printf("---------------------------------------------------\n");
     printChoices();
     while(choice != -1){
