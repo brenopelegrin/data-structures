@@ -1,19 +1,24 @@
 CC = gcc
 CFLAGS = -Wall
 
-TARGET = double_list
+TARGET = main.out
 
-default: main
+all: main.out
 
-main: double_list
+main.out: my_string.o double_list.o main.c
 	@echo "=== Compiling main ==="
-	$(CC) $(CFLAGS) -I./tad-double_list/ -o ./build/main.o  ./main.c ./build/tad-double_list.o -lm
-	@echo "=== Done compiling main ==="
+	$(CC) $(CFLAGS) -I./tad-double_list/ -o ./build/main.out  ./main.c ./build/double_list.o ./build/my_string.o -lm
+	@echo "=== Done compiling main ===\n"
 
-double_list:
+double_list.o: my_string.o ./tad-double_list/double_list.c
 	@echo "=== Compiling tad-double_list ==="
-	$(CC) $(CFLAGS) -c -o ./build/double_list.o ./tad-double_list/double_list.c
+	$(CC) $(CFLAGS) -I./tad-my_string/ -c -o ./build/double_list.o ./tad-double_list/double_list.c
 	@echo "=== Done compiling tad-double_list ===\n"
+
+my_string.o: ./tad-my_string/my_string.c
+	@echo "=== Compiling tad-my_string ==="
+	$(CC) $(CFLAGS) -c -o ./build/my_string.o ./tad-my_string/my_string.c
+	@echo "=== Done Compiling tad-my_string ===\n"
 
 clean:
 	rm -rf ./build/*
