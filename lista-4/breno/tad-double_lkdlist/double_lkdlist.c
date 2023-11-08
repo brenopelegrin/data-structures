@@ -108,10 +108,10 @@ void dlklist_insertByIndex(DoubleLkdlist* list, int idx, char* data, int* flag){
             *flag = DLKDLIST_SUCCESS;
             return;
         }
-        currNode->next->prev = newNode;
-        newNode->next = currNode->next;
-        currNode->next = newNode;
-        newNode->prev = currNode;
+        newNode->next = currNode;
+        newNode->prev = currNode->prev;
+        currNode->prev->next = newNode;
+        currNode->prev = newNode;
         list->length++;
         *flag = DLKDLIST_SUCCESS;
         return;
@@ -150,23 +150,47 @@ void dlkdlist_insertOrdenated(DoubleLkdlist* list, char* data, int* flag){
 }
 
 void dlkdlist_removeByIndex(DoubleLkdlist* list, int idx, int* flag){
+    if(idx < 1 || idx > list->length){
+        *flag = DLKDLIST_ERROR_INDEX_OUT_OF_BOUNDS;
+        return;
+    }
+
     Node* currentNode = dlkdlist_getNodeByIndex(list, idx, flag);
     if(currentNode == NULL){
         return;
     }
-    currentNode->prev->next = currentNode->next;
-    currentNode->next->prev = currentNode->prev;
-    free(currentNode->data);
-    free(currentNode);
-    *flag = DLKDLIST_SUCCESS;
-    return;
+
+    if(idx == 1){
+        currentNode->next->prev = NULL;
+        list->first = currentNode->next;
+        free(currentNode);
+        list->length--;
+        *flag = DLKDLIST_SUCCESS;
+        return;
+    }
+    else if(idx == list->length){
+        currentNode->prev->next = NULL;
+        list->last = currentNode->prev;
+        free(currentNode);
+        list->length--;
+        *flag = DLKDLIST_SUCCESS;
+        return;
+    }
+    else if(idx > 1 && idx < list->length){
+        currentNode->prev->next = currentNode->next;
+        currentNode->next->prev = currentNode->prev;
+        free(currentNode);
+        list->length--;
+        *flag = DLKDLIST_SUCCESS;
+        return;
+    }
 }
 
 int dlkdlist_exist(DoubleLkdlist* list, char* data, int* flag){
     Node* currNode = list->first;
     *flag = DLKDLIST_SUCCESS;
     for(int i=0; i<list->length; i++){
-        if(strcmp((const char*) currNode->data, (const char*) data)){
+        if(strcmp(currNode->data, data) == 0){
             return DLKDLIST_BOOL_TRUE;
         }
         currNode = currNode->next;
@@ -187,6 +211,9 @@ void dlkdlist_printAll(DoubleLkdlist* list, int* flag){
     Node* currNode = list->first;
     for(int i=0; i<list->length; i++){
         printf("%s\n", currNode->data);
+        if(currNode->next == NULL){
+            break;
+        }
         currNode = currNode->next;
     }
     *flag = DLKDLIST_SUCCESS;
@@ -222,7 +249,6 @@ void dlkdlist_destroyList(DoubleLkdlist* list, int* flag){
     Node* temp = currNode;
     for(int i=0; i<list->length; i++){
         temp = currNode->next;
-        free(currNode->data);
         free(currNode);
         currNode = temp;
     }

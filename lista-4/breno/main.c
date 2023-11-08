@@ -27,20 +27,20 @@ char* readString(){
     getchar(); // this avoids past \n from choice
     printf("> Digite a string a ser inserida: ");
     while ((charBuffer=getchar()) != EOF && charBuffer != '\n') {
-        if (i + 1 >= size)
-        {
+        if (i + 1 >= size){
             size = size * 2 + 1;
             //Reallocates to fit string in memory
             string = realloc(string, sizeof(char)*size);
             if(!string){
                 //Realloc failed
-                printf("Erro: memória indisponível para realloc");
+                printf("[!] ERRO: memória indisponível para realloc da string lida");
                 exit(EXIT_FAILURE);
             }
         }
         string[i] = charBuffer;
         i++;
     }
+    string[i] = '\0';
     return string;
 }
 
@@ -56,7 +56,9 @@ void checkError(int* flag){
 int main(int argc, char* argv[]){
     int flag = 0;
     int choice = 0;
-    char* string;
+    int boolean = -1;
+    char* string = malloc(sizeof(NULL));
+    int index = -1;
     DoubleLkdlist* list = dlkdlist_create(&flag);
 
     printf("Bem-vindo(a) ao TAD de lista duplamente encadeada.\n");
@@ -85,7 +87,6 @@ int main(int argc, char* argv[]){
                 checkError(&flag);
                 break;
             case 2:
-                int index = -1;
                 printf("> Digite o índice: ");
                 scanf("%d", &index);
 
@@ -100,6 +101,32 @@ int main(int argc, char* argv[]){
                 printf("String lida: %s\n", string);
                 dlkdlist_insertOrdenated(list, string, &flag);
                 checkError(&flag);
+                break;
+            case 4:
+                printf("> Digite o índice: ");
+                scanf("%d", &index);
+                dlkdlist_removeByIndex(list, index, &flag);
+                checkError(&flag);
+                break;
+            case 5:
+                boolean = dlkdlist_isEmpty(list, &flag);
+                checkError(&flag);
+                if(boolean == DLKDLIST_BOOL_TRUE){
+                    printf("A lista está vazia.");
+                } else {
+                    printf("A lista não está vazia.");
+                }
+                break;
+            case 6:
+                string = readString();
+                printf("String lida: %s\n", string);
+                boolean = dlkdlist_exist(list, string, &flag);
+                checkError(&flag);
+                if(boolean == DLKDLIST_BOOL_TRUE){
+                    printf("O elemento está na lista.");
+                } else {
+                    printf("O elemento não está na lista.");
+                }
                 break;
             default:
                 printf("\n[!] ERRO: opção inválida!");
