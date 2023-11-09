@@ -73,9 +73,9 @@ Pedro
 Digite a posição em que deseja inserir: 
 ```
 
-A contagem das posições começa no valor 0, portanto:
-- 0 insere o elemento na primeira posição da lista.
-- Qualquer número entre 0 e o tamanho da lista insere o elemento na posição correspondente.
+A contagem das posições começa no valor 1 na interação com o usuário, portanto:
+- 1 insere o elemento na primeira posição da lista.
+- Qualquer número entre 1 e o tamanho da lista insere o elemento na posição correspondente, movendo os nós adjascentes.
 - Qualquer número maior do que o tamanho da lista insere o elemento na última posição da lista.
 - -1 insere o elemento na última posição da lista.
 - Qualquer número menor que -1 é tido como uma posição inválida, o programa irá requisitar que o número seja inserido novamente.
@@ -134,7 +134,7 @@ Digite o número associado à operação desejada (Digite -1 para ver as operaç
 Digite o nome que deseja inserir:
 Pedro  
 
-Digite a posição em que deseja inserir: 0
+Digite a posição em que deseja inserir: 1
 Operação realizada com sucesso
 
 Digite o número associado à operação desejada (Digite -1 para ver as operações novamente): 3

@@ -55,6 +55,7 @@ int main(){
             scanf("%d",&pos);
             getchar();
         }
+        pos = pos - 1;
         insert(l,S,pos,&flag);
         if(flag==PROCESS_SUCESS){
             sucess_message();
